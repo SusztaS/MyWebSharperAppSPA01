@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MyWebSharperAppSPA01</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        [ws-template], [ws-children-template] {
+            display: none;
+        }
+
+        .wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 20px;
+        }
+
+            .sidebar div {
+                cursor: pointer;
+                padding: 12px;
+                border-bottom: 1px solid #444;
+                transition: background 0.2s;
+            }
+
+                .sidebar div:hover {
+                    background: #444;
+                }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/MyWebSharperAppSPA01.head.js"></script>
+</head>
+<body>
+    <div id="main" ws-children-template="Main" class="wrapper">
+        <div class="sidebar">
+            <div ws-onclick="ShowAdat">
+                <i class="bi bi-person-plus-fill me-2"></i> Versenyzői adatfeltöltés
+            </div>
+            <div ws-onclick="ShowLista">
+                <i class="bi bi-list-ul me-2"></i> Versenyzők listázása
+            </div>
+            <div ws-onclick="ShowSorsolas">
+                <i class="bi bi-dice-5-fill me-2"></i> Sorsolás
+            </div>
+        </div>
+        <div class="main-content" ws-hole="MainContent"></div>
+    </div>
+
+    <div ws-template="AdatView">
+        <h1 class="mb-4">My list of unique people</h1>
+        <ul ws-hole="ListContainer" class="list-group mb-4">
+            <li ws-template="ListItem" class="list-group-item">${Name}</li>
+        </ul>
+        <div class="card p-3 shadow-sm">
+            <div class="input-group mb-2">
+                <input ws-var="Name" class="form-control" placeholder="Name" />
+                <button ws-onclick="Add" class="btn btn-primary">Add</button>
+            </div>
+            <div class="text-muted small">You are about to add: <strong>${Name}</strong></div>
+        </div>
+    </div>
+
+    <script type="module" src="Scripts/MyWebSharperAppSPA01.min.js"></script>
+</body>
+</html> 
