@@ -14,18 +14,18 @@ function Main(){
   const clubOptionsView=Map((items) => Doc.Concat(map((club) => Doc.Element("option", ofArray([Attr.Create("value", club)]), ofArray([Doc.TextNode(club)])), sort(distinct(map((c) => c.ClubName, items))))), competitorList.View);
   const raceOptionsView=Map((items) => Doc.Concat(map((race) => Doc.Element("option", ofArray([Attr.Create("value", race)]), ofArray([Doc.TextNode(race)])), sort(distinct(map((c) => c.Race, items))))), competitorList.View);
   const competitorRowsView=Map3((_3, _4, _5) => Doc.Concat(map_1(renderCompetitorRow, filter((c) =>(_4==""||c.ClubName==_4)&&(_5==""||c.Race==_5), _3))), competitorList.View, selectedClub.View, selectedRace.View);
-  const drawGroupsView=Map((items) => Doc.Concat(map((t_3) => renderRaceGroup(t_3[0], t_3[1]), sortBy((t_3) => t_3[0], groupBy((c) => c.Race, items)))), drawList.View);
+  const drawGroupsView=Map((items) => items.$==0?Doc.Empty:Doc.Concat(map((t_3) => renderRaceGroup(t_3[0], t_3[1]), groupBy((c) => c.Race, items))), drawList.View);
   const M=Doc.EmbedView(Map((view) => {
-    if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Competitor List")])), Doc.Element("div", ofArray([Class("row mb-3")]), ofArray([Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Filter by club")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilter"), Handler("change", () =>() => {
+    if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Competitors list")])), Doc.Element("div", ofArray([Class("row mb-3")]), ofArray([Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Club")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilter"), Handler("change", () =>() => {
       const id="clubFilter";
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedClub.Set(_4);
-    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All clubs")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Filter by race")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "raceFilter"), Handler("change", () =>() => {
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Race")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "raceFilter"), Handler("change", () =>() => {
       const id="raceFilter";
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedRace.Set(_4);
-    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All races")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
-    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by Race")])), Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => drawList.Set(shuffleWithinRaces(drawList.Get())))]), ofArray([Doc.TextNode("Randomize within races")]))])), Doc.EmbedView(drawGroupsView)]));
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date Of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
+    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by race")])), Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => drawList.Set(shuffleWithinRaces(competitorList.Get())))]), ofArray([Doc.TextNode("Start draw")]))])), Doc.EmbedView(drawGroupsView)]));
     else {
       const U=Doc.TextView(uploadStatus.View);
       const this_2=new ProviderBuilder("New_1");
@@ -40,17 +40,9 @@ function Main(){
             (((content) => {
               const parsed=parseCsv(content);
               competitorList.Set(parsed);
-              drawList.Set(parsed);
-              selectedClub.Set("");
-              selectedRace.Set("");
-              if(parsed.$==0)uploadStatus.Set("No valid rows found in CSV.");
-              else uploadStatus.Set("Loaded competitors: "+String(parsed.Length));
+              drawList.Set(FSharpList.Empty);
+              uploadStatus.Set("Loaded competitors: "+String(parsed.Length));
             })(String(r.result)));
-          };
-          r.onerror=() => {
-            ((() => {
-              uploadStatus.Set("File read error.");
-            })());
           };
           r.readAsText(file);
         }
@@ -80,7 +72,7 @@ function Main(){
   Doc.RunById("main", _2);
 }
 function shuffleWithinRaces(items){
-  return collect((_1) => shuffleList(_1[1]), sortBy((t) => t[0], groupBy((c) => c.Race, items)));
+  return collect((_1) => shuffleList(_1[1]), groupBy((c) => c.Race, items));
 }
 function parseCsv(content){
   const lines=filter((x) => x!="", map((x) => Trim(x), ofArray(SplitChars(Replace(content, "\r", ""), ["\n"], 0))));
@@ -98,8 +90,8 @@ function parseCsv(content){
   }), _2);
 }
 function renderRaceGroup(raceName, competitors){
-  const rows=Doc.Concat(map(renderDrawRow, competitors));
-  return Doc.Element("div", ofArray([Class("mb-5")]), ofArray([Doc.Element("h2", ofArray([Class("h4 mb-3")]), ofArray([Doc.TextNode(raceName)])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([rows]))]))]));
+  const rows=Doc.Concat(mapi(renderDrawRow, competitors));
+  return Doc.Element("div", ofArray([Class("mb-5")]), ofArray([Doc.Element("h2", ofArray([Class("h4 mb-3")]), ofArray([Doc.TextNode(raceName)])), Doc.Element("table", ofArray([Class("table")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([rows]))]))]));
 }
 function renderCompetitorRow(c){
   return Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(String(c.Number))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FirstName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FamilyName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.ClubName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.Race)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfBirth))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(genderText(c.Gender))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfMedicalExamination))]))]));
@@ -110,9 +102,9 @@ function shuffleList(items){
   while(i>0)
     {
       const j=toInt(Math.random()*(i+1));
-      const temp=get(arr, i);
+      const tmp=get(arr, i);
       set(arr, i, get(arr, j));
-      set(arr, j, temp);
+      set(arr, j, tmp);
       i=i-1;
     }
   return ofArray(arr);
@@ -123,7 +115,7 @@ function isHeaderRow(cells){
       const familyName=cells.$1.$0;
       const a=Trim(cells.$0).toLowerCase();
       const b=Trim(familyName).toLowerCase();
-      return a=="firstname"||a=="first name"||a=="keresztnev"||b=="familyname"||b=="family name"||b=="lastname"||b=="surname"||b=="vezeteknev";
+      return a=="firstname"||a=="first name"||b=="familyname"||b=="family name";
     }
     else return false;
   }
@@ -135,25 +127,22 @@ function splitLine(line){
 function tryParseCompetitor(line){
   let _1;
   const cells=map((x) => Trim(x), splitLine(line));
-  if(cells.$==1&&(cells.$1.$==1&&(cells.$1.$1.$==1&&(cells.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$1.$==0&&(_1=[cells.$1.$1.$0, cells.$1.$1.$1.$1.$0, cells.$1.$0, cells.$0, cells.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$0],true)))))))))try {
-    return Some({
-      Number:0, 
-      FirstName:_1[3], 
-      FamilyName:_1[2], 
-      ClubName:_1[0], 
-      Race:_1[6], 
-      DateOfBirth:Parse(_1[1]), 
-      Gender:parseGender(_1[4]), 
-      DateOfMedicalExamination:Parse(_1[5])
-    });
-  }
-  catch(m){
-    return null;
-  }
-  else return null;
+  return cells.$==1&&(cells.$1.$==1&&(cells.$1.$1.$==1&&(cells.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$1.$==0&&(_1=[cells.$1.$1.$0, cells.$1.$1.$1.$1.$0, cells.$1.$0, cells.$0, cells.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$0],true))))))))?Some({
+    Number:0, 
+    FirstName:_1[3], 
+    FamilyName:_1[2], 
+    ClubName:_1[0], 
+    Race:_1[6], 
+    DateOfBirth:Parse(_1[1]), 
+    Gender:parseGender(_1[4]), 
+    DateOfMedicalExamination:Parse(_1[5])
+  }):null;
 }
-function renderDrawRow(c){
-  return Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(String(c.Number))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FirstName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FamilyName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.ClubName)]))]));
+function renderDrawRow(index, c){
+  const p=(index/2>>0)%2===0?["#e8f0ff", "#0a2a66"]:["#f2f2f2", "#7a1f1f"];
+  const fg=p[1];
+  const bg=p[0];
+  return Doc.Element("tr", FSharpList.Empty, ofArray([renderDrawCell(bg, fg, String(c.Number)), renderDrawCell(bg, fg, c.FirstName), renderDrawCell(bg, fg, c.FamilyName), renderDrawCell(bg, fg, c.ClubName)]));
 }
 function formatDate(d){
   return DateFormatter(d, "yyyy-MM-dd");
@@ -164,19 +153,18 @@ function genderText(g){
 function parseGender(value){
   const m=Trim(value).toLowerCase();
   switch(m){
-    case"ferfi":
-    case"férfi":
     case"m":
     case"male":
       return{$:0};
-    case"no":
-    case"n\u0151":
     case"f":
     case"female":
       return{$:1};
     default:
       return{$:0};
   }
+}
+function renderDrawCell(bg, fg, text){
+  return Doc.Element("td", ofArray([Attr.Create("style", "background-color:"+bg+";color:"+fg+";font-weight:600")]), ofArray([Doc.TextNode(text)]));
 }
 class Object_1 {
   Equals(obj){
@@ -372,6 +360,9 @@ class Doc extends Object_1 {
   static TextNode(v){
     return Doc.Mk(TextNodeDoc(globalThis.document.createTextNode(v)), Const());
   }
+  static get Empty(){
+    return Doc.Mk(null, Const());
+  }
   static Concat(xs){
     return TreeReduce(Doc.Empty, Doc.Append, ofSeqNonCopying(xs));
   }
@@ -399,9 +390,6 @@ class Doc extends Object_1 {
   static Append(a, b){
     return Doc.Mk(AppendDoc(a.docNode, b.docNode), Map2Unit(a.updates, b.updates));
   }
-  static get Empty(){
-    return Doc.Mk(null, Const());
-  }
   static Run(parent, doc){
     LinkElement(parent, doc.docNode);
     Doc.RunInPlace(false, parent, doc);
@@ -427,11 +415,6 @@ function groupBy(f, l){
   const arr=groupBy_1(f, ofList(l));
   mapInPlace((_1) =>[_1[0], ofArray(_1[1])], arr);
   return ofArray(arr);
-}
-function sortBy(f, l){
-  const a=ofList(l);
-  sortInPlaceBy(f, a);
-  return ofArray(a);
 }
 function map(f, x){
   let r;
@@ -1644,9 +1627,6 @@ function ofList(xs){
       l=tail(l);
     }
   return q;
-}
-function sortInPlaceBy(f, arr){
-  mapInPlace((t) => t[0], mapiInPlace((_1, _2) =>[_2, [f(_2), _1]], arr).sort((_1, _2) => Compare(_1[1], _2[1])));
 }
 function sortInPlace(arr){
   mapInPlace((t) => t[0], mapiInPlace((_1, _2) =>[_2, _1], arr).sort(Compare));

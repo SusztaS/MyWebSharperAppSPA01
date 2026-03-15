@@ -13,16 +13,26 @@
             display: none;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
         .wrapper {
-            display: flex;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 250px;
+            height: 100vh;
             background: #333;
             color: white;
             padding: 20px;
+            overflow-y: auto;
         }
 
             .sidebar div {
@@ -37,44 +47,66 @@
                 }
 
         .main-content {
-            flex: 1;
+            margin-left: 250px;
             padding: 30px;
             background: #f8f9fa;
+            min-height: 100vh;
         }
     </style>
 
     <script type="text/javascript" src="Scripts/MyWebSharperAppSPA01.head.js"></script>
 </head>
+
 <body>
+
     <div id="main" ws-children-template="Main" class="wrapper">
+
         <div class="sidebar">
+
             <div ws-onclick="ShowAdat">
-                <i class="bi bi-person-plus-fill me-2"></i> Competitor Data Upload
+                <i class="bi bi-person-plus-fill me-2"></i>
+                Competitors upload
             </div>
+
             <div ws-onclick="ShowLista">
-                <i class="bi bi-list-ul me-2"></i> Competitor List
+                <i class="bi bi-list-ul me-2"></i>
+                Competitors list
             </div>
+
             <div ws-onclick="ShowSorsolas">
-                <i class="bi bi-dice-5-fill me-2"></i> Draw
+                <i class="bi bi-dice-5-fill me-2"></i>
+                Draw by race
             </div>
+
         </div>
+
         <div class="main-content" ws-hole="MainContent"></div>
+
     </div>
 
+
     <div ws-template="AdatView">
-        <h1 class="mb-4">Competitor Data Upload</h1>
+
+        <h1 class="mb-4">Competitors upload</h1>
+
         <div class="card p-3 shadow-sm">
+
             <div class="mb-3">
-                <label class="form-label">CSV File</label>
+                <label class="form-label">CSV file</label>
                 <input id="csvFileInput" type="file" accept=".csv" class="form-control" />
             </div>
+
             <div class="mb-3">
                 <button ws-onclick="LoadCsv" class="btn btn-primary">Load CSV</button>
             </div>
+
             <div class="text-muted" ws-hole="UploadStatus"></div>
+
         </div>
+
     </div>
 
     <script type="module" src="Scripts/MyWebSharperAppSPA01.min.js"></script>
+
 </body>
 </html>
