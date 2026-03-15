@@ -61,19 +61,19 @@
     </div>
 
     <div ws-template="AdatView">
-        <h1 class="mb-4">My list of unique people</h1>
-        <ul ws-hole="ListContainer" class="list-group mb-4">
-            <li ws-template="ListItem" class="list-group-item">${Name}</li>
-        </ul>
+        <h1 class="mb-4">Versenyzői adatfeltöltés</h1>
         <div class="card p-3 shadow-sm">
-            <div class="input-group mb-2">
-                <input ws-var="Name" class="form-control" placeholder="Name" />
-                <button ws-onclick="Add" class="btn btn-primary">Add</button>
+            <div class="mb-3">
+                <label class="form-label">CSV file</label>
+                <input id="csvFileInput" type="file" accept=".csv" class="form-control" />
             </div>
-            <div class="text-muted small">You are about to add: <strong>${Name}</strong></div>
+            <div class="mb-3">
+                <button ws-onclick="LoadCsv" class="btn btn-primary">CSV betöltése</button>
+            </div>
+            <div class="text-muted" ws-hole="UploadStatus"></div>
         </div>
     </div>
 
     <script type="module" src="Scripts/MyWebSharperAppSPA01.min.js"></script>
 </body>
-</html> 
+</html>
