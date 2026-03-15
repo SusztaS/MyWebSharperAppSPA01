@@ -53,6 +53,9 @@ module Client =
     [<Inline "var r = new FileReader(); r.onload = function() { $cont(String(r.result)); }; r.onerror = function() { $onError(); }; r.readAsText($file);">]
     let readFileAsText (file: obj) (cont: string -> unit) (onError: unit -> unit) : unit = X<unit>
 
+    [<Inline "Math.random()">]
+    let jsRandom () : float = X<float>
+
     let genderText (g: Gender) : string =
         match g with
         | Male -> "Male"
@@ -116,6 +119,23 @@ module Client =
         |> List.choose tryParseCompetitor
         |> List.mapi (fun i c -> { c with Number = i + 1 })
 
+    let shuffleList (items: 'T list) : 'T list =
+        let arr = items |> List.toArray
+        let mutable i = arr.Length - 1
+        while i > 0 do
+            let j = int (jsRandom() * float (i + 1))
+            let temp = arr.[i]
+            arr.[i] <- arr.[j]
+            arr.[j] <- temp
+            i <- i - 1
+        arr |> Array.toList
+
+    let shuffleWithinRaces (items: Competitor list) : Competitor list =
+        items
+        |> List.groupBy (fun c -> c.Race)
+        |> List.sortBy fst
+        |> List.collect (fun (_, groupItems) -> shuffleList groupItems)
+
     let renderCompetitorRow (c: Competitor) : Doc =
         Doc.Element "tr" [] [
             Doc.Element "td" [] [Doc.TextNode (string c.Number)] :> Doc
@@ -126,6 +146,37 @@ module Client =
             Doc.Element "td" [] [Doc.TextNode (formatDate c.DateOfBirth)] :> Doc
             Doc.Element "td" [] [Doc.TextNode (genderText c.Gender)] :> Doc
             Doc.Element "td" [] [Doc.TextNode (formatDate c.DateOfMedicalExamination)] :> Doc
+        ] :> Doc
+
+    let renderDrawRow (c: Competitor) : Doc =
+        Doc.Element "tr" [] [
+            Doc.Element "td" [] [Doc.TextNode (string c.Number)] :> Doc
+            Doc.Element "td" [] [Doc.TextNode c.FirstName] :> Doc
+            Doc.Element "td" [] [Doc.TextNode c.FamilyName] :> Doc
+            Doc.Element "td" [] [Doc.TextNode c.ClubName] :> Doc
+        ] :> Doc
+
+    let renderRaceGroup (raceName: string, competitors: Competitor list) : Doc =
+        let rows =
+            competitors
+            |> List.map renderDrawRow
+            |> Doc.Concat
+
+        Doc.Element "div" [Attr.Class "mb-5"] [
+            Doc.Element "h2" [Attr.Class "h4 mb-3"] [Doc.TextNode raceName] :> Doc
+            Doc.Element "table" [Attr.Class "table table-striped"] [
+                Doc.Element "thead" [] [
+                    Doc.Element "tr" [] [
+                        Doc.Element "th" [] [Doc.TextNode "#"] :> Doc
+                        Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
+                        Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
+                        Doc.Element "th" [] [Doc.TextNode "Club"] :> Doc
+                    ] :> Doc
+                ] :> Doc
+                Doc.Element "tbody" [] [
+                    rows
+                ] :> Doc
+            ] :> Doc
         ] :> Doc
 
     [<SPAEntryPoint>]
@@ -140,6 +191,7 @@ module Client =
         let selectedRace : Var<string> = Var.Create ""
 
         let competitorList : Var<Competitor list> = Var.Create []
+        let drawList : Var<Competitor list> = Var.Create []
 
         let clubOptionsView : View<Doc> =
             competitorList.View.Map(fun items ->
@@ -176,6 +228,15 @@ module Client =
                 |> Doc.Concat
             ) competitorList.View selectedClub.View selectedRace.View
 
+        let drawGroupsView : View<Doc> =
+            drawList.View.Map(fun items ->
+                items
+                |> List.groupBy (fun c -> c.Race)
+                |> List.sortBy fst
+                |> List.map renderRaceGroup
+                |> Doc.Concat
+            )
+
         IndexTemplate.Main()
             .ShowAdat(fun _ -> currentView.Value <- UploadView)
             .ShowLista(fun _ -> currentView.Value <- ListView)
@@ -198,6 +259,7 @@ module Client =
                                         (fun content ->
                                             let parsed = parseCsv content
                                             competitorList.Value <- parsed
+                                            drawList.Value <- parsed
                                             selectedClub.Value <- ""
                                             selectedRace.Value <- ""
 
@@ -268,8 +330,18 @@ module Client =
 
                     | DrawView ->
                         Doc.Element "div" [] [
-                            Doc.Element "h1" [Attr.Class "h3"] [Doc.TextNode "Draw"] :> Doc
-                            Doc.TextNode "Draw functionality will be available soon."
+                            Doc.Element "div" [Attr.Class "d-flex justify-content-between align-items-center mb-4"] [
+                                Doc.Element "h1" [Attr.Class "h3 mb-0"] [Doc.TextNode "Draw by Race"] :> Doc
+                                Doc.Element "button" [
+                                    Attr.Class "btn btn-primary"
+                                    on.click (fun _ _ ->
+                                        drawList.Value <- shuffleWithinRaces drawList.Value
+                                    )
+                                ] [
+                                    Doc.TextNode "Randomize within races"
+                                ] :> Doc
+                            ] :> Doc
+                            drawGroupsView |> Doc.EmbedView
                         ] :> Doc
                 ) |> Doc.EmbedView
             )
