@@ -15,6 +15,7 @@ module Competitors =
 
     type Competitor =
         {
+            Number: int
             FirstName: string
             FamilyName: string
             ClubName: string
@@ -31,9 +32,9 @@ module Client =
     open Competitors
 
     type ViewState =
-        | AdatView
-        | ListaView
-        | SorsolasView
+        | UploadView
+        | ListView
+        | DrawView
 
     type IndexTemplate = Template<"wwwroot/index.html", ClientLoad.FromDocument, ServerLoad.WhenChanged>
 
@@ -49,8 +50,8 @@ module Client =
     [<Inline "$x == null">]
     let isNull (x: obj) : bool = X<bool>
 
-    [<Inline "var r = new FileReader(); r.onload = function(e) { $cont(String(r.result)); }; r.readAsText($file);">]
-    let readFileAsText (file: obj) (cont: string -> unit) : unit = X<unit>
+    [<Inline "var r = new FileReader(); r.onload = function() { $cont(String(r.result)); }; r.onerror = function() { $onError(); }; r.readAsText($file);">]
+    let readFileAsText (file: obj) (cont: string -> unit) (onError: unit -> unit) : unit = X<unit>
 
     let genderText (g: Gender) : string =
         match g with
@@ -77,25 +78,30 @@ module Client =
         | firstName :: familyName :: _ ->
             let a = firstName.Trim().ToLower()
             let b = familyName.Trim().ToLower()
-            a = "firstname" || a = "keresztnev" || b = "familyname" || b = "vezeteknev"
+            a = "firstname" || a = "first name" || a = "keresztnev" ||
+            b = "familyname" || b = "family name" || b = "lastname" || b = "surname" || b = "vezeteknev"
         | _ -> false
 
     let tryParseCompetitor (line: string) : Competitor option =
-        let cells : string list =
+        let cells =
             splitLine line
             |> List.map (fun x -> x.Trim())
 
         match cells with
-        | [ firstName; familyName; clubName; race; dateOfBirth; gender; dateOfMedicalExamination ] ->
-            Some {
-                FirstName = firstName
-                FamilyName = familyName
-                ClubName = clubName
-                Race = race
-                DateOfBirth = DateTime.Parse(dateOfBirth)
-                Gender = parseGender gender
-                DateOfMedicalExamination = DateTime.Parse(dateOfMedicalExamination)
-            }
+        | [ firstName; familyName; clubName; race; dateOfBirth; gender; medicalDate ] ->
+            try
+                Some {
+                    Number = 0
+                    FirstName = firstName
+                    FamilyName = familyName
+                    ClubName = clubName
+                    Race = race
+                    DateOfBirth = DateTime.Parse(dateOfBirth)
+                    Gender = parseGender gender
+                    DateOfMedicalExamination = DateTime.Parse(medicalDate)
+                }
+            with
+            | _ -> None
         | _ -> None
 
     let parseCsv (content: string) : Competitor list =
@@ -108,9 +114,11 @@ module Client =
             | first :: rest when isHeaderRow (splitLine first) -> rest
             | _ -> lines
         |> List.choose tryParseCompetitor
+        |> List.mapi (fun i c -> { c with Number = i + 1 })
 
     let renderCompetitorRow (c: Competitor) : Doc =
         Doc.Element "tr" [] [
+            Doc.Element "td" [] [Doc.TextNode (string c.Number)] :> Doc
             Doc.Element "td" [] [Doc.TextNode c.FirstName] :> Doc
             Doc.Element "td" [] [Doc.TextNode c.FamilyName] :> Doc
             Doc.Element "td" [] [Doc.TextNode c.ClubName] :> Doc
@@ -122,95 +130,146 @@ module Client =
 
     [<SPAEntryPoint>]
     let Main () =
-        let currentView : Var<ViewState> = Var.Create AdatView
-        let uploadStatus : Var<string> = Var.Create "Várt oszlopok: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination"
+
+        let currentView : Var<ViewState> = Var.Create UploadView
+
+        let uploadStatus : Var<string> =
+            Var.Create "Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination"
+
         let selectedClub : Var<string> = Var.Create ""
+        let selectedRace : Var<string> = Var.Create ""
+
         let competitorList : Var<Competitor list> = Var.Create []
 
         let clubOptionsView : View<Doc> =
-            competitorList.View.Map(fun (items: Competitor list) ->
+            competitorList.View.Map(fun items ->
                 items
                 |> List.map (fun c -> c.ClubName)
                 |> List.distinct
                 |> List.sort
-                |> List.map (fun (club: string) ->
+                |> List.map (fun club ->
                     Doc.Element "option" [Attr.Create "value" club] [Doc.TextNode club] :> Doc
                 )
                 |> Doc.Concat
             )
 
-        let competitorRowsView : View<Doc> =
-            View.Map2 (fun (items: Competitor list) (clubFilter: string) ->
+        let raceOptionsView : View<Doc> =
+            competitorList.View.Map(fun items ->
                 items
-                |> List.filter (fun c -> clubFilter = "" || c.ClubName = clubFilter)
+                |> List.map (fun c -> c.Race)
+                |> List.distinct
+                |> List.sort
+                |> List.map (fun race ->
+                    Doc.Element "option" [Attr.Create "value" race] [Doc.TextNode race] :> Doc
+                )
+                |> Doc.Concat
+            )
+
+        let competitorRowsView : View<Doc> =
+            View.Map3 (fun items club race ->
+                items
+                |> List.filter (fun c ->
+                    (club = "" || c.ClubName = club) &&
+                    (race = "" || c.Race = race)
+                )
                 |> Seq.map renderCompetitorRow
                 |> Doc.Concat
-            ) competitorList.View selectedClub.View
+            ) competitorList.View selectedClub.View selectedRace.View
 
         IndexTemplate.Main()
-            .ShowAdat(fun _ -> currentView.Value <- AdatView)
-            .ShowLista(fun _ -> currentView.Value <- ListaView)
-            .ShowSorsolas(fun _ -> currentView.Value <- SorsolasView)
+            .ShowAdat(fun _ -> currentView.Value <- UploadView)
+            .ShowLista(fun _ -> currentView.Value <- ListView)
+            .ShowSorsolas(fun _ -> currentView.Value <- DrawView)
             .MainContent(
                 currentView.View.Map(fun view ->
                     match view with
-                    | AdatView ->
+
+                    | UploadView ->
                         IndexTemplate.AdatView()
                             .UploadStatus(Doc.TextView uploadStatus.View)
                             .LoadCsv(fun _ ->
-                                let input : obj = getElementById "csvFileInput"
-                                let file : obj = getFirstFile input
+                                let input = getElementById "csvFileInput"
+                                let file = getFirstFile input
+
                                 if isNull file then
-                                    uploadStatus.Value <- "Nincs kiválasztott file."
+                                    uploadStatus.Value <- "No file selected."
                                 else
-                                    readFileAsText file (fun (content: string) ->
-                                        let parsed : Competitor list = parseCsv content
-                                        competitorList.Value <- parsed
-                                        selectedClub.Value <- ""
-                                        uploadStatus.Value <- "Betöltött versenyzők száma: " + string parsed.Length
-                                    )
+                                    readFileAsText file
+                                        (fun content ->
+                                            let parsed = parseCsv content
+                                            competitorList.Value <- parsed
+                                            selectedClub.Value <- ""
+                                            selectedRace.Value <- ""
+
+                                            if List.isEmpty parsed then
+                                                uploadStatus.Value <- "No valid rows found in CSV."
+                                            else
+                                                uploadStatus.Value <- "Loaded competitors: " + string parsed.Length
+                                        )
+                                        (fun () ->
+                                            uploadStatus.Value <- "File read error."
+                                        )
                             )
                             .Doc()
 
-                    | ListaView ->
+                    | ListView ->
                         Doc.Element "div" [] [
-                            Doc.Element "h1" [Attr.Class "h3 mb-4"] [Doc.TextNode "Versenyzők listázása"] :> Doc
-                            Doc.Element "div" [Attr.Class "mb-3"] [
-                                Doc.Element "label" [Attr.Class "form-label"] [Doc.TextNode "Szűrés club szerint"] :> Doc
-                                Doc.Element "select" [
-                                    Attr.Class "form-select"
-                                    Attr.Create "id" "clubFilterSelect"
-                                    on.change (fun _ _ ->
-                                        let value : string = getElementValue "clubFilterSelect"
-                                        selectedClub.Value <- value
-                                    )
-                                ] [
-                                    Doc.Element "option" [Attr.Create "value" ""] [Doc.TextNode "Összes club"] :> Doc
-                                    clubOptionsView |> Doc.EmbedView
+                            Doc.Element "h1" [Attr.Class "h3 mb-4"] [Doc.TextNode "Competitor List"] :> Doc
+
+                            Doc.Element "div" [Attr.Class "row mb-3"] [
+                                Doc.Element "div" [Attr.Class "col"] [
+                                    Doc.Element "label" [Attr.Class "form-label"] [Doc.TextNode "Filter by club"] :> Doc
+                                    Doc.Element "select" [
+                                        Attr.Class "form-select"
+                                        Attr.Create "id" "clubFilter"
+                                        on.change (fun _ _ ->
+                                            selectedClub.Value <- getElementValue "clubFilter"
+                                        )
+                                    ] [
+                                        Doc.Element "option" [Attr.Create "value" ""] [Doc.TextNode "All clubs"] :> Doc
+                                        clubOptionsView |> Doc.EmbedView
+                                    ] :> Doc
+                                ] :> Doc
+
+                                Doc.Element "div" [Attr.Class "col"] [
+                                    Doc.Element "label" [Attr.Class "form-label"] [Doc.TextNode "Filter by race"] :> Doc
+                                    Doc.Element "select" [
+                                        Attr.Class "form-select"
+                                        Attr.Create "id" "raceFilter"
+                                        on.change (fun _ _ ->
+                                            selectedRace.Value <- getElementValue "raceFilter"
+                                        )
+                                    ] [
+                                        Doc.Element "option" [Attr.Create "value" ""] [Doc.TextNode "All races"] :> Doc
+                                        raceOptionsView |> Doc.EmbedView
+                                    ] :> Doc
                                 ] :> Doc
                             ] :> Doc
+
                             Doc.Element "table" [Attr.Class "table table-striped"] [
                                 Doc.Element "thead" [] [
                                     Doc.Element "tr" [] [
+                                        Doc.Element "th" [] [Doc.TextNode "#"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
-                                        Doc.Element "th" [] [Doc.TextNode "Club Name"] :> Doc
+                                        Doc.Element "th" [] [Doc.TextNode "Club"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Race"] :> Doc
-                                        Doc.Element "th" [] [Doc.TextNode "Date Of Birth"] :> Doc
+                                        Doc.Element "th" [] [Doc.TextNode "Date of Birth"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Gender"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Medical Date"] :> Doc
                                     ] :> Doc
                                 ] :> Doc
+
                                 Doc.Element "tbody" [] [
                                     competitorRowsView |> Doc.EmbedView
                                 ] :> Doc
                             ] :> Doc
                         ] :> Doc
 
-                    | SorsolasView ->
+                    | DrawView ->
                         Doc.Element "div" [] [
-                            Doc.Element "h1" [Attr.Class "h3"] [Doc.TextNode "Sorsolás"] :> Doc
-                            Doc.TextNode "A sorsolási funkció hamarosan elérhető lesz."
+                            Doc.Element "h1" [Attr.Class "h3"] [Doc.TextNode "Draw"] :> Doc
+                            Doc.TextNode "Draw functionality will be available soon."
                         ] :> Doc
                 ) |> Doc.EmbedView
             )

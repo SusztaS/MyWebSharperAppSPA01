@@ -5,19 +5,25 @@ function isIDisposable(x){
   return"Dispose"in x;
 }
 function Main(){
-  const currentView=_c.Create_1(AdatView);
-  const uploadStatus=_c.Create_1("Várt oszlopok: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination");
+  const currentView=_c.Create_1(UploadView);
+  const uploadStatus=_c.Create_1("Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination");
   const selectedClub=_c.Create_1("");
+  const selectedRace=_c.Create_1("");
   const competitorList=_c.Create_1(FSharpList.Empty);
   const clubOptionsView=Map((items) => Doc.Concat(map((club) => Doc.Element("option", ofArray([Attr.Create("value", club)]), ofArray([Doc.TextNode(club)])), sort(distinct(map((c) => c.ClubName, items))))), competitorList.View);
-  const competitorRowsView=Map2((_3, _4) => Doc.Concat(map_1(renderCompetitorRow, filter((c) => _4==""||c.ClubName==_4, _3))), competitorList.View, selectedClub.View);
+  const raceOptionsView=Map((items) => Doc.Concat(map((race) => Doc.Element("option", ofArray([Attr.Create("value", race)]), ofArray([Doc.TextNode(race)])), sort(distinct(map((c) => c.Race, items))))), competitorList.View);
+  const competitorRowsView=Map3((_3, _4, _5) => Doc.Concat(map_1(renderCompetitorRow, filter((c) =>(_4==""||c.ClubName==_4)&&(_5==""||c.Race==_5), _3))), competitorList.View, selectedClub.View, selectedRace.View);
   const M=Doc.EmbedView(Map((view) => {
-    if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Versenyz\u0151k listázása")])), Doc.Element("div", ofArray([Class("mb-3")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Sz\u0171rés club szerint")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilterSelect"), Handler("change", () =>() => {
-      const id="clubFilterSelect";
+    if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Competitor List")])), Doc.Element("div", ofArray([Class("row mb-3")]), ofArray([Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Filter by club")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilter"), Handler("change", () =>() => {
+      const id="clubFilter";
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedClub.Set(_4);
-    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("Összes club")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date Of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
-    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3")]), ofArray([Doc.TextNode("Sorsolás")])), Doc.TextNode("A sorsolási funkció hamarosan elérhet\u0151 lesz.")]));
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All clubs")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Filter by race")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "raceFilter"), Handler("change", () =>() => {
+      const id="raceFilter";
+      let _4=document.getElementById(id)?document.getElementById(id).value:"";
+      return selectedRace.Set(_4);
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All races")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
+    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3")]), ofArray([Doc.TextNode("Draw")])), Doc.TextNode("Draw functionality will be available soon.")]));
     else {
       const U=Doc.TextView(uploadStatus.View);
       const this_2=new ProviderBuilder("New_1");
@@ -25,7 +31,7 @@ function Main(){
       const b_1=(t_3.h.push(EventQ2(t_3.k, "loadcsv", () => t_3.i, () => {
         const el=document.getElementById("csvFileInput");
         const file=el&&el.files&&el.files.length>0?el.files[0]:null;
-        if(file==null)uploadStatus.Set("Nincs kiválasztott file.");
+        if(file==null)uploadStatus.Set("No file selected.");
         else {
           let r=new FileReader();
           r.onload=() => {
@@ -33,8 +39,15 @@ function Main(){
               const parsed=parseCsv(content);
               competitorList.Set(parsed);
               selectedClub.Set("");
-              uploadStatus.Set("Betöltött versenyz\u0151k száma: "+String(parsed.Length));
+              selectedRace.Set("");
+              if(parsed.$==0)uploadStatus.Set("No valid rows found in CSV.");
+              else uploadStatus.Set("Loaded competitors: "+String(parsed.Length));
             })(String(r.result)));
+          };
+          r.onerror=() => {
+            ((() => {
+              uploadStatus.Set("File read error.");
+            })());
           };
           r.readAsText(file);
         }
@@ -47,13 +60,13 @@ function Main(){
   }, currentView.View));
   const t=new ProviderBuilder("New_1");
   const t_1=(t.h.push(EventQ2(t.k, "showadat", () => t.i, () => {
-    currentView.Set(AdatView);
+    currentView.Set(UploadView);
   })),t);
   const t_2=(t_1.h.push(EventQ2(t_1.k, "showlista", () => t_1.i, () => {
-    currentView.Set(ListaView);
+    currentView.Set(ListView);
   })),t_1);
   const this_1=(t_2.h.push(EventQ2(t_2.k, "showsorsolas", () => t_2.i, () => {
-    currentView.Set(SorsolasView);
+    currentView.Set(DrawView);
   })),t_2);
   const b=(this_1.h.push(new Elt("maincontent", M)),this_1);
   const p=CompleteHoles(b.k, b.h, []);
@@ -66,10 +79,20 @@ function Main(){
 function parseCsv(content){
   const lines=filter((x) => x!="", map((x) => Trim(x), ofArray(SplitChars(Replace(content, "\r", ""), ["\n"], 0))));
   let _1=lines.$==1?(lines.$1,isHeaderRow(splitLine(lines.$0))?(lines.$0,lines.$1):lines):lines;
-  return choose(tryParseCompetitor, _1);
+  let _2=choose(tryParseCompetitor, _1);
+  return mapi((_3, _4) =>({
+    Number:_3+1, 
+    FirstName:_4.FirstName, 
+    FamilyName:_4.FamilyName, 
+    ClubName:_4.ClubName, 
+    Race:_4.Race, 
+    DateOfBirth:_4.DateOfBirth, 
+    Gender:_4.Gender, 
+    DateOfMedicalExamination:_4.DateOfMedicalExamination
+  }), _2);
 }
 function renderCompetitorRow(c){
-  return Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FirstName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FamilyName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.ClubName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.Race)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfBirth))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(genderText(c.Gender))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfMedicalExamination))]))]));
+  return Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(String(c.Number))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FirstName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FamilyName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.ClubName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.Race)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfBirth))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(genderText(c.Gender))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfMedicalExamination))]))]));
 }
 function isHeaderRow(cells){
   if(cells.$==1){
@@ -77,7 +100,7 @@ function isHeaderRow(cells){
       const familyName=cells.$1.$0;
       const a=Trim(cells.$0).toLowerCase();
       const b=Trim(familyName).toLowerCase();
-      return a=="firstname"||a=="keresztnev"||b=="familyname"||b=="vezeteknev";
+      return a=="firstname"||a=="first name"||a=="keresztnev"||b=="familyname"||b=="family name"||b=="lastname"||b=="surname"||b=="vezeteknev";
     }
     else return false;
   }
@@ -89,15 +112,22 @@ function splitLine(line){
 function tryParseCompetitor(line){
   let _1;
   const cells=map((x) => Trim(x), splitLine(line));
-  return cells.$==1&&(cells.$1.$==1&&(cells.$1.$1.$==1&&(cells.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$1.$==0&&(_1=[cells.$1.$1.$0, cells.$1.$1.$1.$1.$0, cells.$1.$1.$1.$1.$1.$1.$0, cells.$1.$0, cells.$0, cells.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$0],true))))))))?Some({
-    FirstName:_1[4], 
-    FamilyName:_1[3], 
-    ClubName:_1[0], 
-    Race:_1[6], 
-    DateOfBirth:Parse(_1[1]), 
-    Gender:parseGender(_1[5]), 
-    DateOfMedicalExamination:Parse(_1[2])
-  }):null;
+  if(cells.$==1&&(cells.$1.$==1&&(cells.$1.$1.$==1&&(cells.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$==1&&(cells.$1.$1.$1.$1.$1.$1.$1.$==0&&(_1=[cells.$1.$1.$0, cells.$1.$1.$1.$1.$0, cells.$1.$0, cells.$0, cells.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$1.$1.$1.$0, cells.$1.$1.$1.$0],true)))))))))try {
+    return Some({
+      Number:0, 
+      FirstName:_1[3], 
+      FamilyName:_1[2], 
+      ClubName:_1[0], 
+      Race:_1[6], 
+      DateOfBirth:Parse(_1[1]), 
+      Gender:parseGender(_1[4]), 
+      DateOfMedicalExamination:Parse(_1[5])
+    });
+  }
+  catch(m){
+    return null;
+  }
+  else return null;
 }
 function formatDate(d){
   return DateFormatter(d, "yyyy-MM-dd");
@@ -139,9 +169,9 @@ let _c=Lazy((_i) => class Var_1 extends Object_1 {
   }
   static { }
 });
-let AdatView={$:0};
-let ListaView={$:1};
-let SorsolasView={$:2};
+let UploadView={$:0};
+let ListView={$:1};
+let DrawView={$:2};
 class FSharpList {
   static Empty=Create_1(FSharpList, {$:0});
   get Length(){
@@ -435,6 +465,33 @@ function sort(l){
 function choose(f, l){
   return ofSeq(choose_1(f, l));
 }
+function mapi(f, x){
+  let r;
+  let l;
+  let i;
+  let go;
+  if(x.$==0)return x;
+  else {
+    const res=Create_1(FSharpList, {$:1});
+    r=res;
+    l=x;
+    i=0;
+    go=true;
+    while(go)
+      {
+        r.$0=f(i, l.$0);
+        l=l.$1;
+        if(l.$==0)go=false;
+        else {
+          const t=Create_1(FSharpList, {$:1});
+          r=(r.$1=t,t);
+          i=i+1;
+        }
+      }
+    r.$1=FSharpList.Empty;
+    return res;
+  }
+}
 function length_1(l){
   let r=l;
   let i=0;
@@ -714,8 +771,8 @@ function main(h){
   LoadLocalTemplates("index");
   return h?NamedTemplate("index", n, h):void 0;
 }
-function Map2(fn, a, a_1){
-  return CreateLazy(() => Map2_1(fn, a(), a_1()));
+function Map3(fn, a, a_1, a_2){
+  return CreateLazy(() => Map3_1(fn, a(), a_1(), a_2()));
 }
 function Map(fn, a){
   return CreateLazy(() => Map_1(fn, a()));
@@ -758,11 +815,11 @@ function Sink(act, a){
   }
   scheduler().Fork(loop);
 }
-function Map3(fn, a, a_1, a_2){
-  return CreateLazy(() => Map3_1(fn, a(), a_1(), a_2()));
-}
 function Sequence(views){
   return CreateLazy(() => Sequence_1(map_1((a) => a(), views)));
+}
+function Map2(fn, a, a_1){
+  return CreateLazy(() => Map2_1(fn, a(), a_1()));
 }
 function map_1(f, s){
   return{GetEnumerator:() => {
@@ -1027,24 +1084,28 @@ class ConcreteVar extends Var {
     this.id=Int();
   }
 }
-function Map2_1(fn, sn1, sn2){
+function Map3_1(fn, sn1, sn2, sn3){
   const _1=sn1.s;
   const _2=sn2.s;
-  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?{s:Forever(fn(_1.$0, _2.$0))}:Map2Opt1(fn, _1.$0, sn2);
-  else if(_2!=null&&_2.$==0)return Map2Opt2(fn, _2.$0, sn1);
+  const _3=sn3.s;
+  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?_3!=null&&_3.$==0?{s:Forever(fn(_1.$0, _2.$0, _3.$0))}:Map3Opt1(fn, _1.$0, _2.$0, sn3):_3!=null&&_3.$==0?Map3Opt2(fn, _1.$0, _3.$0, sn2):Map3Opt3(fn, _1.$0, sn2, sn3);
+  else if(_2!=null&&_2.$==0)return _3!=null&&_3.$==0?Map3Opt4(fn, _2.$0, _3.$0, sn1):Map3Opt5(fn, _2.$0, sn1, sn3);
+  else if(_3!=null&&_3.$==0)return Map3Opt6(fn, _3.$0, sn1, sn2);
   else {
     const res={s:Waiting([], [])};
     const cont=() => {
       const m=res.s;
       if(!(m!=null&&m.$==0||m!=null&&m.$==2)){
-        const _3=ValueAndForever(sn1);
-        const _4=ValueAndForever(sn2);
-        if(_3!=null&&_3.$==1)if(_4!=null&&_4.$==1)if(_3.$0[1]&&_4.$0[1])MarkForever(res, fn(_3.$0[0], _4.$0[0]));
-        else MarkReady(res, fn(_3.$0[0], _4.$0[0]));
+        const _4=ValueAndForever(sn1);
+        const _5=ValueAndForever(sn2);
+        const _6=ValueAndForever(sn3);
+        if(_4!=null&&_4.$==1)if(_5!=null&&_5.$==1)if(_6!=null&&_6.$==1)if(_4.$0[1]&&_5.$0[1]&&_6.$0[1])MarkForever(res, fn(_4.$0[0], _5.$0[0], _6.$0[0]));
+        else MarkReady(res, fn(_4.$0[0], _5.$0[0], _6.$0[0]));
       }
     };
     When(sn1, cont, res);
     When(sn2, cont, res);
+    When(sn3, cont, res);
     return res;
   }
 }
@@ -1064,11 +1125,23 @@ function WhenObsoleteRun(snap, obs){
   if(m==null)obs();
   else m!=null&&m.$==2?(m.$0,m.$1.push(obs)):m!=null&&m.$==3?(m.$0,m.$1.push(obs)):m.$0;
 }
-function Map2Opt1(fn, x, sn2){
-  return Map_1((y) => fn(x, y), sn2);
+function Map3Opt1(fn, x, y, sn3){
+  return Map_1((z) => fn(x, y, z), sn3);
 }
-function Map2Opt2(fn, y, sn1){
-  return Map_1((x) => fn(x, y), sn1);
+function Map3Opt2(fn, x, z, sn2){
+  return Map_1((y) => fn(x, y, z), sn2);
+}
+function Map3Opt3(fn, x, sn2, sn3){
+  return Map2_1((_1, _2) => fn(x, _1, _2), sn2, sn3);
+}
+function Map3Opt4(fn, y, z, sn1){
+  return Map_1((x) => fn(x, y, z), sn1);
+}
+function Map3Opt5(fn, y, sn1, sn3){
+  return Map2_1((_1, _2) => fn(_1, y, _2), sn1, sn3);
+}
+function Map3Opt6(fn, z, sn1, sn2){
+  return Map2_1((_1, _2) => fn(_1, _2, z), sn1, sn2);
 }
 function ValueAndForever(snap){
   const m=snap.s;
@@ -1112,6 +1185,27 @@ function MarkDone(res, sn, v){
   const _1=sn.s;
   if(_1!=null&&_1.$==0)MarkForever(res, v);
   else MarkReady(res, v);
+}
+function Map2_1(fn, sn1, sn2){
+  const _1=sn1.s;
+  const _2=sn2.s;
+  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?{s:Forever(fn(_1.$0, _2.$0))}:Map2Opt1(fn, _1.$0, sn2);
+  else if(_2!=null&&_2.$==0)return Map2Opt2(fn, _2.$0, sn1);
+  else {
+    const res={s:Waiting([], [])};
+    const cont=() => {
+      const m=res.s;
+      if(!(m!=null&&m.$==0||m!=null&&m.$==2)){
+        const _3=ValueAndForever(sn1);
+        const _4=ValueAndForever(sn2);
+        if(_3!=null&&_3.$==1)if(_4!=null&&_4.$==1)if(_3.$0[1]&&_4.$0[1])MarkForever(res, fn(_3.$0[0], _4.$0[0]));
+        else MarkReady(res, fn(_3.$0[0], _4.$0[0]));
+      }
+    };
+    When(sn1, cont, res);
+    When(sn2, cont, res);
+    return res;
+  }
 }
 function EnqueueSafe(q, x){
   q.push(x);
@@ -1186,6 +1280,12 @@ function Join_1(snap){
   }, res);
   return res;
 }
+function Map2Opt1(fn, x, sn2){
+  return Map_1((y) => fn(x, y), sn2);
+}
+function Map2Opt2(fn, y, sn1){
+  return Map_1((x) => fn(x, y), sn1);
+}
 function WhenObsolete(snap, obs){
   const m=snap.s;
   if(m==null)Obsolete(obs);
@@ -1205,31 +1305,6 @@ function WhenRun(snap, avail, obs){
     q2.push(obs);
   }
   else avail(m.$0);
-}
-function Map3_1(fn, sn1, sn2, sn3){
-  const _1=sn1.s;
-  const _2=sn2.s;
-  const _3=sn3.s;
-  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?_3!=null&&_3.$==0?{s:Forever(fn(_1.$0, _2.$0, _3.$0))}:Map3Opt1(fn, _1.$0, _2.$0, sn3):_3!=null&&_3.$==0?Map3Opt2(fn, _1.$0, _3.$0, sn2):Map3Opt3(fn, _1.$0, sn2, sn3);
-  else if(_2!=null&&_2.$==0)return _3!=null&&_3.$==0?Map3Opt4(fn, _2.$0, _3.$0, sn1):Map3Opt5(fn, _2.$0, sn1, sn3);
-  else if(_3!=null&&_3.$==0)return Map3Opt6(fn, _3.$0, sn1, sn2);
-  else {
-    const res={s:Waiting([], [])};
-    const cont=() => {
-      const m=res.s;
-      if(!(m!=null&&m.$==0||m!=null&&m.$==2)){
-        const _4=ValueAndForever(sn1);
-        const _5=ValueAndForever(sn2);
-        const _6=ValueAndForever(sn3);
-        if(_4!=null&&_4.$==1)if(_5!=null&&_5.$==1)if(_6!=null&&_6.$==1)if(_4.$0[1]&&_5.$0[1]&&_6.$0[1])MarkForever(res, fn(_4.$0[0], _5.$0[0], _6.$0[0]));
-        else MarkReady(res, fn(_4.$0[0], _5.$0[0], _6.$0[0]));
-      }
-    };
-    When(sn1, cont, res);
-    When(sn2, cont, res);
-    When(sn3, cont, res);
-    return res;
-  }
 }
 function Sequence_1(snaps){
   const snaps_1=ofSeq_1(snaps);
@@ -1256,24 +1331,6 @@ function Sequence_1(snaps){
     }, snaps_1);
     return res;
   }
-}
-function Map3Opt1(fn, x, y, sn3){
-  return Map_1((z) => fn(x, y, z), sn3);
-}
-function Map3Opt2(fn, x, z, sn2){
-  return Map_1((y) => fn(x, y, z), sn2);
-}
-function Map3Opt3(fn, x, sn2, sn3){
-  return Map2_1((_1, _2) => fn(x, _1, _2), sn2, sn3);
-}
-function Map3Opt4(fn, y, z, sn1){
-  return Map_1((x) => fn(x, y, z), sn1);
-}
-function Map3Opt5(fn, y, sn1, sn3){
-  return Map2_1((_1, _2) => fn(_1, y, _2), sn1, sn3);
-}
-function Map3Opt6(fn, z, sn1, sn2){
-  return Map2_1((_1, _2) => fn(_1, _2, z), sn1, sn2);
 }
 class TemplateHole extends Object_1 {
   ForTextView(){
