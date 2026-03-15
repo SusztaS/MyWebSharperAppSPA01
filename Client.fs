@@ -129,7 +129,7 @@ module Client =
     let shuffleWithinRaces items =
         items
         |> List.groupBy (fun c -> c.Race)
-        |> List.collect (fun (_,x) -> shuffleList x)
+        |> List.collect (fun (_, x) -> shuffleList x)
 
     let renderCompetitorRow c =
         Doc.Element "tr" [] [
@@ -148,26 +148,63 @@ module Client =
             [Attr.Create "style" ("background-color:" + bg + ";color:" + fg + ";font-weight:600")]
             [Doc.TextNode text] :> Doc
 
-    let renderDrawRow index c =
-        let pairIndex = index / 2
+    let renderDrawMatchNumberCell bg fg matchNumber rowspan =
+        Doc.Element "td"
+            [
+                Attr.Create "style" ("background-color:" + bg + ";color:" + fg + ";font-weight:700;vertical-align:middle;text-align:center;width:1%;white-space:nowrap;padding-left:8px;padding-right:8px")
+                Attr.Create "rowspan" (string rowspan)
+            ]
+            [
+                Doc.Element "div"
+                    [
+                        Attr.Create "style" "display:flex;align-items:center;justify-content:center;height:100%;min-height:80px;width:100%;text-align:center"
+                    ]
+                    [
+                        Doc.TextNode (string matchNumber)
+                    ] :> Doc
+            ] :> Doc
 
-        let bg,fg =
+    let renderDrawPair matchNumber pairIndex (pair: Competitor list) =
+        let bg, fg =
             if pairIndex % 2 = 0 then
-                "#e8f0ff","#0a2a66"
+                "#e8f0ff", "#0a2a66"
             else
-                "#f2f2f2","#7a1f1f"
+                "#f2f2f2", "#7a1f1f"
 
-        Doc.Element "tr" [] [
-            renderDrawCell bg fg (string c.Number)
-            renderDrawCell bg fg c.FirstName
-            renderDrawCell bg fg c.FamilyName
-            renderDrawCell bg fg c.ClubName
-        ] :> Doc
+        match pair with
+        | [a; b] ->
+            Doc.Concat [
+                Doc.Element "tr" [] [
+                    renderDrawMatchNumberCell bg fg matchNumber 2
+                    renderDrawCell bg fg (string a.Number)
+                    renderDrawCell bg fg a.FirstName
+                    renderDrawCell bg fg a.FamilyName
+                    renderDrawCell bg fg a.ClubName
+                ] :> Doc
+                Doc.Element "tr" [] [
+                    renderDrawCell bg fg (string b.Number)
+                    renderDrawCell bg fg b.FirstName
+                    renderDrawCell bg fg b.FamilyName
+                    renderDrawCell bg fg b.ClubName
+                ] :> Doc
+            ]
+        | [a] ->
+            Doc.Element "tr" [] [
+                renderDrawMatchNumberCell bg fg matchNumber 1
+                renderDrawCell bg fg (string a.Number)
+                renderDrawCell bg fg a.FirstName
+                renderDrawCell bg fg a.FamilyName
+                renderDrawCell bg fg a.ClubName
+            ] :> Doc
+        | _ ->
+            Doc.Empty
 
     let renderRaceGroup (raceName, competitors) =
         let rows =
             competitors
-            |> List.mapi renderDrawRow
+            |> List.chunkBySize 2
+            |> List.mapi (fun pairIndex pair ->
+                renderDrawPair (pairIndex + 1) pairIndex pair)
             |> Doc.Concat
 
         Doc.Element "div" [Attr.Class "mb-5"] [
@@ -175,6 +212,7 @@ module Client =
             Doc.Element "table" [Attr.Class "table"] [
                 Doc.Element "thead" [] [
                     Doc.Element "tr" [] [
+                        Doc.Element "th" [Attr.Create "style" "width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px"] [Doc.TextNode "Match"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "#"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
@@ -189,6 +227,7 @@ module Client =
     let Main () =
 
         let currentView = Var.Create UploadView
+        let drawDone = Var.Create false
 
         let uploadStatus =
             Var.Create "Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination"
@@ -243,6 +282,26 @@ module Client =
                     |> List.map renderRaceGroup
                     |> Doc.Concat)
 
+        let drawButtonView =
+            drawDone.View.Map(fun doneState ->
+                if doneState then
+                    Doc.Element "button" [
+                        Attr.Class "btn btn-secondary"
+                        Attr.Create "disabled" "disabled"
+                    ] [
+                        Doc.TextNode "Start draw"
+                    ] :> Doc
+                else
+                    Doc.Element "button" [
+                        Attr.Class "btn btn-primary"
+                        on.click (fun _ _ ->
+                            drawList.Value <- shuffleWithinRaces competitorList.Value
+                            drawDone.Value <- true)
+                    ] [
+                        Doc.TextNode "Start draw"
+                    ] :> Doc
+            )
+
         IndexTemplate.Main()
             .ShowAdat(fun _ -> currentView.Value <- UploadView)
             .ShowLista(fun _ -> currentView.Value <- ListView)
@@ -266,6 +325,9 @@ module Client =
                                         let parsed = parseCsv content
                                         competitorList.Value <- parsed
                                         drawList.Value <- []
+                                        drawDone.Value <- false
+                                        selectedClub.Value <- ""
+                                        selectedRace.Value <- ""
                                         uploadStatus.Value <- "Loaded competitors: " + string parsed.Length))
                             .Doc()
 
@@ -315,10 +377,9 @@ module Client =
                                         Doc.Element "th" [] [Doc.TextNode "Medical Date"] :> Doc
                                     ] :> Doc
                                 ] :> Doc
-                                Doc.Element "tbody" [
-                                    ] [
-                                        competitorRowsView |> Doc.EmbedView
-                                    ] :> Doc
+                                Doc.Element "tbody" [] [
+                                    competitorRowsView |> Doc.EmbedView
+                                ] :> Doc
                             ] :> Doc
 
                         ] :> Doc
@@ -330,13 +391,7 @@ module Client =
 
                                 Doc.Element "h1" [Attr.Class "h3 mb-0"] [Doc.TextNode "Draw by race"] :> Doc
 
-                                Doc.Element "button" [
-                                    Attr.Class "btn btn-primary"
-                                    on.click (fun _ _ ->
-                                        drawList.Value <- shuffleWithinRaces competitorList.Value)
-                                ] [
-                                    Doc.TextNode "Start draw"
-                                ] :> Doc
+                                drawButtonView |> Doc.EmbedView
 
                             ] :> Doc
 

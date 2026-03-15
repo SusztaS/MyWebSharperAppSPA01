@@ -6,6 +6,7 @@ function isIDisposable(x){
 }
 function Main(){
   const currentView=_c.Create_1(UploadView);
+  const drawDone=_c.Create_1(false);
   const uploadStatus=_c.Create_1("Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination");
   const selectedClub=_c.Create_1("");
   const selectedRace=_c.Create_1("");
@@ -15,6 +16,10 @@ function Main(){
   const raceOptionsView=Map((items) => Doc.Concat(map((race) => Doc.Element("option", ofArray([Attr.Create("value", race)]), ofArray([Doc.TextNode(race)])), sort(distinct(map((c) => c.Race, items))))), competitorList.View);
   const competitorRowsView=Map3((_3, _4, _5) => Doc.Concat(map_1(renderCompetitorRow, filter((c) =>(_4==""||c.ClubName==_4)&&(_5==""||c.Race==_5), _3))), competitorList.View, selectedClub.View, selectedRace.View);
   const drawGroupsView=Map((items) => items.$==0?Doc.Empty:Doc.Concat(map((t_3) => renderRaceGroup(t_3[0], t_3[1]), groupBy((c) => c.Race, items))), drawList.View);
+  const drawButtonView=Map((doneState) => doneState?Doc.Element("button", ofArray([Class("btn btn-secondary"), Attr.Create("disabled", "disabled")]), ofArray([Doc.TextNode("Start draw")])):Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => {
+    drawList.Set(shuffleWithinRaces(competitorList.Get()));
+    return drawDone.Set(true);
+  })]), ofArray([Doc.TextNode("Start draw")])), drawDone.View);
   const M=Doc.EmbedView(Map((view) => {
     if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Competitors list")])), Doc.Element("div", ofArray([Class("row mb-3")]), ofArray([Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Club")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilter"), Handler("change", () =>() => {
       const id="clubFilter";
@@ -25,7 +30,7 @@ function Main(){
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedRace.Set(_4);
     })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date Of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
-    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by race")])), Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => drawList.Set(shuffleWithinRaces(competitorList.Get())))]), ofArray([Doc.TextNode("Start draw")]))])), Doc.EmbedView(drawGroupsView)]));
+    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by race")])), Doc.EmbedView(drawButtonView)])), Doc.EmbedView(drawGroupsView)]));
     else {
       const U=Doc.TextView(uploadStatus.View);
       const this_2=new ProviderBuilder("New_1");
@@ -41,6 +46,9 @@ function Main(){
               const parsed=parseCsv(content);
               competitorList.Set(parsed);
               drawList.Set(FSharpList.Empty);
+              drawDone.Set(false);
+              selectedClub.Set("");
+              selectedRace.Set("");
               uploadStatus.Set("Loaded competitors: "+String(parsed.Length));
             })(String(r.result)));
           };
@@ -71,9 +79,6 @@ function Main(){
   LoadLocalTemplates("");
   Doc.RunById("main", _2);
 }
-function shuffleWithinRaces(items){
-  return collect((_1) => shuffleList(_1[1]), groupBy((c) => c.Race, items));
-}
 function parseCsv(content){
   const lines=filter((x) => x!="", map((x) => Trim(x), ofArray(SplitChars(Replace(content, "\r", ""), ["\n"], 0))));
   let _1=lines.$==1?(lines.$1,isHeaderRow(splitLine(lines.$0))?(lines.$0,lines.$1):lines):lines;
@@ -89,25 +94,15 @@ function parseCsv(content){
     DateOfMedicalExamination:_4.DateOfMedicalExamination
   }), _2);
 }
+function shuffleWithinRaces(items){
+  return collect((_1) => shuffleList(_1[1]), groupBy((c) => c.Race, items));
+}
 function renderRaceGroup(raceName, competitors){
-  const rows=Doc.Concat(mapi(renderDrawRow, competitors));
-  return Doc.Element("div", ofArray([Class("mb-5")]), ofArray([Doc.Element("h2", ofArray([Class("h4 mb-3")]), ofArray([Doc.TextNode(raceName)])), Doc.Element("table", ofArray([Class("table")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([rows]))]))]));
+  const rows=Doc.Concat(mapi((_1, _2) => renderDrawPair(_1+1, _1, _2), chunkBySize(2, competitors)));
+  return Doc.Element("div", ofArray([Class("mb-5")]), ofArray([Doc.Element("h2", ofArray([Class("h4 mb-3")]), ofArray([Doc.TextNode(raceName)])), Doc.Element("table", ofArray([Class("table")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", ofArray([Attr.Create("style", "width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px")]), ofArray([Doc.TextNode("Match")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([rows]))]))]));
 }
 function renderCompetitorRow(c){
   return Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(String(c.Number))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FirstName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.FamilyName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.ClubName)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(c.Race)])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfBirth))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(genderText(c.Gender))])), Doc.Element("td", FSharpList.Empty, ofArray([Doc.TextNode(formatDate(c.DateOfMedicalExamination))]))]));
-}
-function shuffleList(items){
-  const arr=ofList(items);
-  let i=length(arr)-1;
-  while(i>0)
-    {
-      const j=toInt(Math.random()*(i+1));
-      const tmp=get(arr, i);
-      set(arr, i, get(arr, j));
-      set(arr, j, tmp);
-      i=i-1;
-    }
-  return ofArray(arr);
 }
 function isHeaderRow(cells){
   if(cells.$==1){
@@ -138,11 +133,34 @@ function tryParseCompetitor(line){
     DateOfMedicalExamination:Parse(_1[5])
   }):null;
 }
-function renderDrawRow(index, c){
-  const p=(index/2>>0)%2===0?["#e8f0ff", "#0a2a66"]:["#f2f2f2", "#7a1f1f"];
+function shuffleList(items){
+  const arr=ofList(items);
+  let i=length(arr)-1;
+  while(i>0)
+    {
+      const j=toInt(Math.random()*(i+1));
+      const tmp=get(arr, i);
+      set(arr, i, get(arr, j));
+      set(arr, j, tmp);
+      i=i-1;
+    }
+  return ofArray(arr);
+}
+function renderDrawPair(matchNumber, pairIndex, pair){
+  let _1;
+  const p=pairIndex%2===0?["#e8f0ff", "#0a2a66"]:["#f2f2f2", "#7a1f1f"];
   const fg=p[1];
   const bg=p[0];
-  return Doc.Element("tr", FSharpList.Empty, ofArray([renderDrawCell(bg, fg, String(c.Number)), renderDrawCell(bg, fg, c.FirstName), renderDrawCell(bg, fg, c.FamilyName), renderDrawCell(bg, fg, c.ClubName)]));
+  switch(pair.$==1?pair.$1.$==0?(_1=pair.$0,1):pair.$1.$1.$==0?(_1=[pair.$0, pair.$1.$0],0):2:2){
+    case 0:
+      const a=_1[0];
+      const b=_1[1];
+      return Doc.Concat([Doc.Element("tr", FSharpList.Empty, ofArray([renderDrawMatchNumberCell(bg, fg, matchNumber, 2), renderDrawCell(bg, fg, String(a.Number)), renderDrawCell(bg, fg, a.FirstName), renderDrawCell(bg, fg, a.FamilyName), renderDrawCell(bg, fg, a.ClubName)])), Doc.Element("tr", FSharpList.Empty, ofArray([renderDrawCell(bg, fg, String(b.Number)), renderDrawCell(bg, fg, b.FirstName), renderDrawCell(bg, fg, b.FamilyName), renderDrawCell(bg, fg, b.ClubName)]))]);
+    case 1:
+      return Doc.Element("tr", FSharpList.Empty, ofArray([renderDrawMatchNumberCell(bg, fg, matchNumber, 1), renderDrawCell(bg, fg, String(_1.Number)), renderDrawCell(bg, fg, _1.FirstName), renderDrawCell(bg, fg, _1.FamilyName), renderDrawCell(bg, fg, _1.ClubName)]));
+    case 2:
+      return Doc.Empty;
+  }
 }
 function formatDate(d){
   return DateFormatter(d, "yyyy-MM-dd");
@@ -162,6 +180,9 @@ function parseGender(value){
     default:
       return{$:0};
   }
+}
+function renderDrawMatchNumberCell(bg, fg, matchNumber, rowspan){
+  return Doc.Element("td", ofArray([Attr.Create("style", "background-color:"+bg+";color:"+fg+";font-weight:700;vertical-align:middle;text-align:center;width:1%;white-space:nowrap;padding-left:8px;padding-right:8px"), Attr.Create("rowspan", String(rowspan))]), ofArray([Doc.Element("div", ofArray([Attr.Create("style", "display:flex;align-items:center;justify-content:center;height:100%;min-height:80px;width:100%;text-align:center")]), ofArray([Doc.TextNode(String(matchNumber))]))]));
 }
 function renderDrawCell(bg, fg, text){
   return Doc.Element("td", ofArray([Attr.Create("style", "background-color:"+bg+";color:"+fg+";font-weight:600")]), ofArray([Doc.TextNode(text)]));
@@ -481,9 +502,6 @@ function sort(l){
   sortInPlace(a);
   return ofArray(a);
 }
-function collect(f, l){
-  return ofSeq(collect_1(f, l));
-}
 function choose(f, l){
   return ofSeq(choose_1(f, l));
 }
@@ -523,6 +541,12 @@ function length_1(l){
       i=i+1;
     }
   return i;
+}
+function collect(f, l){
+  return ofSeq(collect_1(f, l));
+}
+function chunkBySize(size, list){
+  return map(ofArray, ofSeq(chunkBySize_1(size, list)));
 }
 function ofSeq(s){
   if(s instanceof FSharpList)return s;
@@ -854,9 +878,6 @@ function map_1(f, s){
 function distinct_1(s){
   return distinctBy((x) => x, s);
 }
-function collect_1(f, s){
-  return concat(map_1(f, s));
-}
 function choose_1(f, s){
   return collect_1((x) => {
     const m=f(x);
@@ -884,6 +905,9 @@ function append(s1, s2){
     });
   }};
 }
+function collect_1(f, s){
+  return concat(map_1(f, s));
+}
 function distinctBy(f, s){
   return{GetEnumerator:() => {
     const o=Get(s);
@@ -906,6 +930,16 @@ function distinctBy(f, s){
       o.Dispose();
     });
   }};
+}
+function head_1(s){
+  const e=Get(s);
+  try {
+    return e.MoveNext()?e.Current:insufficient();
+  }
+  finally {
+    const _1=e;
+    if(typeof _1=="object"&&isIDisposable(_1))e.Dispose();
+  }
 }
 function concat(ss){
   return{GetEnumerator:() => {
@@ -942,16 +976,6 @@ function concat(ss){
       if(!Equals(x_1, null))x_1.Dispose();
     });
   }};
-}
-function head_1(s){
-  const e=Get(s);
-  try {
-    return e.MoveNext()?e.Current:insufficient();
-  }
-  finally {
-    const _1=e;
-    if(typeof _1=="object"&&isIDisposable(_1))e.Dispose();
-  }
 }
 function iter(p, s){
   const e=Get(s);
@@ -2340,6 +2364,25 @@ function groupBy_1(f, a){
 }
 function mapInPlace(f, arr){
   for(let i=0, _1=arr.length-1;i<=_1;i++)arr[i]=f(arr[i]);
+}
+function chunkBySize_1(size, s){
+  size<=0?FailWith("Chunk size must be positive"):void 0;
+  return{GetEnumerator:() => {
+    const o=Get(s);
+    return new T(true, null, (e) => {
+      if(e.s&&o.MoveNext()){
+        const res=[o.Current];
+        while(e.s&&length(res)<size)
+          if(o.MoveNext())res.push(o.Current);
+          else e.s=false;
+        e.c=res;
+        return true;
+      }
+      else return false;
+    }, () => {
+      o.Dispose();
+    });
+  }};
 }
 function mapiInPlace(f, arr){
   for(let i=0, _1=arr.length-1;i<=_1;i++)arr[i]=f(i, arr[i]);
