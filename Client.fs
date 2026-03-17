@@ -209,11 +209,18 @@ module Client =
 
         Doc.Element "div" [Attr.Class "mb-5"] [
             Doc.Element "h2" [Attr.Class "h4 mb-3"] [Doc.TextNode raceName] :> Doc
-            Doc.Element "table" [Attr.Class "table"] [
+            Doc.Element "table" [Attr.Class "table"; Attr.Create "style" "table-layout:fixed;width:100%"] [
+                Doc.Element "colgroup" [] [
+                    Doc.Element "col" [Attr.Create "style" "width:60px"] [] :> Doc
+                    Doc.Element "col" [Attr.Create "style" "width:70px"] [] :> Doc
+                    Doc.Element "col" [] [] :> Doc
+                    Doc.Element "col" [] [] :> Doc
+                    Doc.Element "col" [] [] :> Doc
+                ] :> Doc
                 Doc.Element "thead" [] [
                     Doc.Element "tr" [] [
-                        Doc.Element "th" [Attr.Create "style" "width:1%;white-space:nowrap;text-align:center;padding-left:8px;padding-right:8px"] [Doc.TextNode "Match"] :> Doc
-                        Doc.Element "th" [] [Doc.TextNode "#"] :> Doc
+                        Doc.Element "th" [Attr.Create "style" "width:60px;text-align:center;white-space:nowrap"] [Doc.TextNode "Match"] :> Doc
+                        Doc.Element "th" [Attr.Create "style" "width:70px;white-space:nowrap"] [Doc.TextNode "#"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "Club"] :> Doc

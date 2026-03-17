@@ -1,257 +1,301 @@
 FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination
-Bence,Kovács,Budapest SC,Senior Male Individual Kata,1995-04-12,Male,2024-01-15
-István,Kocsis,Gyõri Dojó,Senior Male Individual Kata,1994-11-23,Male,2024-01-30
-Norbert,Veres,Debrecen Karate SE,Senior Male Individual Kata,1993-10-14,Male,2023-12-20
-Tibor,Szõke,Budapest SC,Senior Male Individual Kata,1995-09-12,Male,2023-12-05
-Dani,Major,Debrecen Karate SE,Senior Male Individual Kata,1994-11-28,Male,2024-02-14
-Rezsõ,Balogh,Miskolci Harcosok,Senior Male Individual Kata,1994-01-12,Male,2024-02-01
-Aladár,Gulyás,Miskolci Harcosok,Senior Male Individual Kata,1993-03-19,Male,2024-03-12
-Ubul,Gulyás,Budapest SC,Senior Male Individual Kata,1994-11-11,Male,2024-01-10
-Kevin,Balogh,Budapest SC,Senior Male Individual Kata,1997-01-12,Male,2024-02-12
-Miron,Takács,Miskolci Harcosok,Senior Male Individual Kata,1993-02-14,Male,2024-03-01
-Palkó,Simon,Szeged Fit,Senior Male Individual Kata,1995-07-15,Male,2024-01-30
-Soma,Rácz,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1994-03-17,Male,2024-01-05
-Ugri,László,Debrecen Karate SE,Senior Male Individual Kata,1994-01-25,Male,2024-01-11
-Zalán,Gál,Szeged Fit,Senior Male Individual Kata,1995-08-09,Male,2024-01-18
-Barna,Szilágyi,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1994-12-12,Male,2024-01-30
-Döme,Fülöp,Debrecen Karate SE,Senior Male Individual Kata,1995-02-28,Male,2024-02-05
-Dóra,Nagy,Debrecen Karate SE,Senior Female Individual Kata,1998-10-22,Female,2023-11-20
-Vivien,Kovács,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1997-03-25,Female,2024-02-18
-Beatrix,Kanyó,Budapest SC,Senior Female Individual Kata,1997-05-25,Female,2024-03-12
-Bella,Kovács,Debrecen Karate SE,Senior Female Individual Kata,1996-05-12,Female,2023-12-28
-Mici,Gulyás,Budapest SC,Senior Female Individual Kata,1997-03-19,Female,2024-02-28
-Csibi,Szõke,Miskolci Harcosok,Senior Female Individual Kata,1996-09-12,Female,2023-12-05
-Szidi,Papp,Debrecen Karate SE,Senior Female Individual Kata,1996-09-30,Female,2024-01-10
-Ulla,Major,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1998-11-28,Female,2024-02-14
-Fanni,Bakos,Szeged Fit,Senior Female Individual Kata,1999-04-17,Female,2024-03-10
-Beáta,Halász,Szeged Fit,Senior Female Individual Kata,1997-08-15,Female,2024-01-16
-Dina,Váradi,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1998-10-02,Female,2023-12-18
-Fifi,Balla,Debrecen Karate SE,Senior Female Individual Kata,1997-06-07,Female,2024-03-04
-Hédi,Kovács,Szeged Fit,Senior Female Individual Kata,1997-05-12,Female,2024-01-07
-Juci,Horváth,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1996-03-04,Female,2024-03-12
-Léna,Kiss,Debrecen Karate SE,Senior Female Individual Kata,1998-12-30,Female,2024-02-06
-Nelli,Szabó,Szeged Fit,Senior Female Individual Kata,1997-08-14,Female,2024-02-23
-Márk,Horváth,Gyõri Dojó,U21 Male Individual Kata,2005-03-04,Male,2024-02-01
-Walter,Nagy,Miskolci Harcosok,U21 Male Individual Kata,2005-06-30,Male,2024-01-27
-Cecil,Nagy,Gyõri Dojó,U21 Male Individual Kata,2004-10-22,Male,2024-02-06
-Ottó,Váradi,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2004-10-02,Male,2023-12-28
-Toni,Takács,Gyõri Dojó,U21 Male Individual Kata,2003-02-14,Male,2023-12-15
-Vili,Szûcs,Miskolci Harcosok,U21 Male Individual Kata,2004-02-02,Male,2024-01-27
-Peti,Horváth,Debrecen Karate SE,U21 Male Individual Kata,2004-03-04,Male,2024-03-12
-Kázmér,Szûcs,Budapest SC,U21 Male Individual Kata,2005-02-02,Male,2024-01-27
-Zoltán,Varga,Szeged Fit,U21 Female Individual Kata,2006-07-18,Female,2024-01-10
-Anita,Szalai,Gyõri Dojó,U21 Female Individual Kata,2005-03-19,Female,2024-01-14
-Xénia,Horváth,Debrecen Karate SE,U21 Female Individual Kata,2004-08-12,Female,2024-03-10
-Zsófi,Bakos,Debrecen Karate SE,U21 Female Individual Kata,2005-04-17,Female,2024-03-10
-Odi,Nagy,Miskolci Harcosok,U21 Female Individual Kata,2005-10-22,Female,2024-02-17
-Alida,Vörös,Budapest SC,U21 Female Individual Kata,2005-05-02,Female,2024-02-15
-Saci,Sándor,Pécsi Küzdõsport Egyesület,U21 Female Individual Kata,2004-05-18,Female,2024-01-20
-Imola,Király,Miskolci Harcosok,U21 Female Individual Kata,2005-11-11,Female,2024-03-02
-Arnold,Balázs,Gyõri Dojó,Senior Male Kunite -75 kg,1993-02-11,Male,2024-01-08
-Norbert,Veres,Debrecen Karate SE,Senior Male Kunite -75 kg,1993-10-14,Male,2023-12-20
-Erik,Balogh,Gyõri Dojó,Senior Male Kunite -75 kg,1995-07-14,Male,2024-02-17
-Bence,Kovács,Budapest SC,Senior Male Kunite -75 kg,1995-04-12,Male,2024-01-15
-Ferkó,Gál,Pécsi Küzdõsport Egyesület,Senior Male Kunite -75 kg,1991-08-09,Male,2024-01-18
-Tamás,Szabó,Budapest SC,Senior Male Kunite -75 kg,1992-05-10,Male,2024-01-22
-László,Nagy,Debrecen Karate SE,Senior Male Kunite -75 kg,1994-03-15,Male,2023-11-30
-Márton,Kiss,Gyõri Dojó,Senior Male Kunite -75 kg,1990-12-12,Male,2024-02-05
-Gergely,Tóth,Szeged Fit,Senior Male Kunite -75 kg,1993-08-14,Male,2024-01-11
-Zoltán,Farkas,Pécsi Küzdõsport Egyesület,Senior Male Kunite -75 kg,1991-06-25,Male,2024-02-28
-Péter,Takács,Miskolci Harcosok,Senior Male Kunite -75 kg,1995-04-12,Male,2024-01-15
-Dániel,Mészáros,Budapest SC,Senior Male Kunite -75 kg,1992-10-22,Male,2023-11-20
-Attila,Juhász,Gyõri Dojó,Senior Male Kunite -75 kg,1988-03-04,Male,2024-02-01
-Sándor,Molnár,Szeged Fit,Senior Male Kunite -75 kg,1989-07-18,Male,2024-01-10
-Béla,Balogh,Miskolci Harcosok,Senior Male Kunite -75 kg,1990-12-30,Male,2023-12-15
-Csaba,Papp,Debrecen Karate SE,Senior Male Kunite -75 kg,1993-04-05,Male,2024-03-01
-Géza,Vince,Miskolci Harcosok,Senior Male Kunite -75 kg,1992-06-04,Male,2024-03-08
-Áron,Hajdu,Gyõri Dojó,Senior Male Kunite -75 kg,1995-01-30,Male,2024-02-22
-Lóránt,Fodor,Debrecen Karate SE,Senior Male Kunite -75 kg,1992-03-22,Male,2024-01-27
-Nándor,Major,Szeged Fit,Senior Male Kunite -75 kg,1992-11-28,Male,2024-02-22
-Patrik,Bakos,Pécsi Küzdõsport Egyesület,Senior Male Kunite -75 kg,1994-04-17,Male,2024-02-09
-Sebestyén,Halász,Debrecen Karate SE,Senior Male Kunite -75 kg,1991-08-15,Male,2024-01-21
-Aladár,Gulyás,Miskolci Harcosok,Senior Male Kunite -75 kg,1993-03-19,Male,2024-03-12
-Dezsõ,Török,Pécsi Küzdõsport Egyesület,Senior Male Kunite -75 kg,1992-01-15,Male,2024-03-14
-Ottó,Király,Gyõri Dojó,Senior Male Kunite -75 kg,1993-11-11,Male,2024-03-02
-Jenõ,Török,Debrecen Karate SE,Senior Male Kunite -75 kg,1992-01-15,Male,2024-01-08
-Fülöp,Sándor,Debrecen Karate SE,Senior Male Kunite -75 kg,1993-05-18,Male,2024-01-03
-Elemér,Varga,Budapest SC,Senior Male Kunite -75 kg,1992-07-18,Male,2024-02-23
-Ádi,Balogh,Gyõri Dojó,Senior Male Kunite -75 kg,1996-01-12,Male,2024-02-01
-Robi,Veres,Miskolci Harcosok,Senior Male Kunite -75 kg,1994-10-14,Male,2024-01-22
-Lali,Gál,Debrecen Karate SE,Senior Male Kunite -75 kg,1994-08-09,Male,2024-01-18
-Vili,Király,Budapest SC,Senior Male Kunite -75 kg,1992-11-11,Male,2024-03-02
-Gellért,Takács,Budapest SC,U21 Male Kunite -84 kg,2004-10-02,Male,2023-12-28
-András,Takács,Budapest SC,U21 Male Kunite -84 kg,2003-02-14,Male,2024-01-11
-Máté,Szõke,Gyõri Dojó,U21 Male Kunite -84 kg,2004-04-11,Male,2024-03-08
-Ottó,Váradi,Pécsi Küzdõsport Egyesület,U21 Male Kunite -84 kg,2004-10-02,Male,2023-12-28
-Kornél,Szûcs,Szeged Fit,U21 Male Kunite -84 kg,2003-02-02,Male,2024-03-04
-Miron,Takács,Miskolci Harcosok,U21 Male Kunite -84 kg,2004-02-14,Male,2024-03-01
-Hani,Szilágyi,Debrecen Karate SE,U21 Male Kunite -84 kg,2004-12-12,Male,2024-01-30
-Dodo,Juhász,Pécsi Küzdõsport Egyesület,U21 Male Kunite -84 kg,2004-05-20,Male,2024-03-01
-Csaba,Barta,Debrecen Karate SE,U21 Male Kunite -84 kg,2003-07-27,Male,2024-01-19
-Imre,Török,Miskolci Harcosok,U21 Male Kunite -84 kg,2004-01-15,Male,2024-03-08
-Richárd,Vörös,Gyõri Dojó,U21 Male Kunite -84 kg,2003-05-02,Male,2024-02-05
-Béla,Vörös,Gyõri Dojó,U21 Male Kunite -84 kg,2004-05-02,Male,2024-01-25
-Lajos,Bíró,Szeged Fit,U21 Male Kunite -84 kg,2003-08-16,Male,2024-03-10
-Soma,Rácz,Pécsi Küzdõsport Egyesület,U21 Male Kunite -84 kg,2004-03-17,Male,2024-01-05
-Jenõ,Major,Pécsi Küzdõsport Egyesület,U21 Male Kunite -84 kg,2003-11-28,Male,2024-01-21
-Kázmér,Varga,Miskolci Harcosok,U21 Male Kunite -84 kg,2004-07-18,Male,2023-12-28
-Eszter,Kiss,Budapest SC,Junior Female Individual Kata,2008-12-30,Female,2023-12-15
-Yvette,Varga,Gyõri Dojó,Junior Female Individual Kata,2008-02-14,Female,2024-01-05
-Viktória,Szilágyi,Budapest SC,Junior Female Individual Kata,2007-12-12,Female,2024-03-02
-Johanna,Simon,Debrecen Karate SE,Junior Female Individual Kata,2007-03-19,Female,2024-02-23
-Róza,Hajdu,Miskolci Harcosok,Junior Female Individual Kata,2008-01-30,Female,2023-12-18
-Flóra,Kiss,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2007-12-30,Female,2024-01-15
-Oda,Mészáros,Gyõri Dojó,Junior Female Individual Kata,2008-12-08,Female,2024-02-15
-Zizi,Simon,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2008-07-15,Female,2024-02-12
-Mimi,Kelemen,Budapest SC,Junior Female Individual Kata,2008-02-08,Female,2024-01-14
-Gabi,Hajdu,Budapest SC,Junior Female Individual Kata,2008-01-30,Female,2024-02-22
-Sári,Kiss,Szeged Fit,Junior Female Individual Kata,2007-12-30,Female,2024-02-06
-Emi,Mészáros,Miskolci Harcosok,Junior Female Individual Kata,2008-12-08,Female,2024-01-20
-Csenge,Somogyi,Miskolci Harcosok,Junior Female Individual Kata,2008-06-30,Female,2023-12-12
-Joli,Fülöp,Szeged Fit,Junior Female Individual Kata,2007-02-28,Female,2024-02-05
-Gitta,Kelemen,Gyõri Dojó,Junior Female Individual Kata,2008-02-08,Female,2024-02-02
-Ulla,Oláh,Debrecen Karate SE,Junior Female Individual Kata,2008-12-03,Female,2024-02-10
-Péter,Takács,Budapest SC,U21 Male Kunite -84 kg,2004-05-15,Male,2024-01-10
-Zoltán,Varga,Szeged Fit,U21 Male Kunite -84 kg,2003-08-12,Male,2024-02-14
-Márk,Horváth,Gyõri Dojó,U21 Male Kunite -84 kg,2004-11-20,Male,2024-01-05
-István,Nagy,Debrecen Karate SE,U21 Male Kunite -84 kg,2004-03-30,Male,2023-12-15
-László,Kovács,Miskolci Harcosok,U21 Male Kunite -84 kg,2003-06-18,Male,2024-02-10
-Bence,Tóth,Pécsi Küzdõsport Egyesület,U21 Male Kunite -84 kg,2004-09-25,Male,2024-01-20
-Anita,Balogh,Gyõri Dojó,Junior Female Individual Kata,2007-04-12,Female,2024-03-05
-Dóra,Szalai,Debrecen Karate SE,Junior Female Individual Kata,2008-05-19,Female,2024-01-14
-Fanni,Kovács,Debrecen Karate SE,Junior Female Individual Kata,2007-05-09,Female,2024-02-11
-Hanna,Török,Szeged Fit,Junior Female Individual Kata,2008-12-04,Female,2024-01-18
-Janka,Hegedûs,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2008-06-14,Female,2024-02-24
-Petra,Halász,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2007-10-30,Female,2024-01-09
-Rebeka,Váradi,Debrecen Karate SE,Junior Female Individual Kata,2008-05-17,Female,2024-01-22
-Tünde,Balla,Szeged Fit,Junior Female Individual Kata,2008-04-01,Female,2024-03-01
-Vivien,Kovács,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2007-03-25,Female,2024-02-18
-Edit,Kelemen,Budapest SC,Junior Female Individual Kata,2008-02-08,Female,2024-02-14
-Nikolett,Szõke,Budapest SC,Junior Female Individual Kata,2008-09-12,Female,2023-12-18
-Tamás,Tóth,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-04-05,Male,2024-03-01
-Miklós,Hegedûs,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2008-09-05,Male,2024-02-10
-Zénó,Kiss,Szeged Fit,Junior Male Individual Kata,2007-11-20,Male,2024-02-22
-Zalán,Sipos,Szeged Fit,Junior Male Individual Kata,2008-12-14,Male,2024-02-06
-Áron,Hajdu,Gyõri Dojó,Junior Male Individual Kata,2008-01-30,Male,2024-02-22
-Hetti,Halász,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-08-15,Male,2024-01-16
-Gergely,Fekete,Budapest SC,Junior Male Individual Kata,2008-10-10,Male,2024-02-05
-Richárd,Sándor,Gyõri Dojó,Junior Male Individual Kata,2007-05-18,Male,2023-12-05
-Balázs,Juhász,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-05-20,Male,2024-03-05
-Tibor,Vince,Debrecen Karate SE,Junior Male Individual Kata,2008-06-04,Male,2024-01-16
-Elemér,Varga,Budapest SC,Junior Male Individual Kata,2008-07-18,Male,2024-02-23
-Vid,Mészáros,Budapest SC,Junior Male Individual Kata,2007-12-08,Male,2024-01-20
-Noni,Oláh,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-12-03,Male,2024-02-10
-Soma,Sipos,Gyõri Dojó,Junior Male Individual Kata,2008-09-22,Male,2024-02-14
-Bence,Varga,Szeged Fit,Junior Male Individual Kata,2007-11-11,Male,2024-01-05
-Márk,Kovács,Budapest SC,Junior Male Individual Kata,2008-04-12,Male,2024-02-15
-Palkó,Simon,Szeged Fit,Junior Male Individual Kata,2007-07-15,Male,2024-01-30
-Döme,Fülöp,Debrecen Karate SE,Junior Male Individual Kata,2007-02-28,Male,2024-02-05
-Huba,Oláh,Szeged Fit,Junior Male Individual Kata,2007-12-03,Male,2024-03-08
-Sebestyén,Halász,Debrecen Karate SE,Junior Male Individual Kata,2007-08-15,Male,2024-01-21
-Kázmér,Varga,Miskolci Harcosok,Junior Male Individual Kata,2007-07-18,Male,2023-12-28
-Tomi,Kelemen,Miskolci Harcosok,Junior Male Individual Kata,2007-02-08,Male,2024-03-14
-Oli,Somogyi,Budapest SC,Junior Male Individual Kata,2008-06-30,Male,2023-12-12
-Cid,Kelemen,Gyõri Dojó,Junior Male Individual Kata,2007-02-08,Male,2024-03-14
-Ádi,Balogh,Gyõri Dojó,Junior Male Individual Kata,2008-01-12,Male,2024-02-01
-Fifi,Simon,Debrecen Karate SE,Junior Male Individual Kata,2007-07-15,Male,2024-02-12
-Joci,László,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2008-01-25,Male,2024-01-11
-Robi,Veres,Miskolci Harcosok,Junior Male Individual Kata,2007-10-14,Male,2024-01-22
-Lali,Gál,Debrecen Karate SE,Junior Male Individual Kata,2007-08-09,Male,2024-01-18
-Vili,Király,Budapest SC,Junior Male Individual Kata,2007-11-11,Male,2024-03-02
-Szabi,Nagy,Szeged Fit,Junior Male Individual Kata,2008-05-05,Male,2024-01-20
-Peti,Tóth,Miskolci Harcosok,Junior Male Individual Kata,2008-09-09,Male,2024-02-25
-Péter,Farkas,Budapest SC,Cadet Male Kunite -63 kg,2010-06-25,Male,2023-10-28
-Kende,Kocsis,Gyõri Dojó,Cadet Male Kunite -63 kg,2009-11-23,Male,2024-01-11
-Pál,Hajdu,Debrecen Karate SE,Cadet Male Kunite -63 kg,2009-01-30,Male,2024-01-07
-Oszkár,Bíró,Miskolci Harcosok,Cadet Male Kunite -63 kg,2010-08-16,Male,2024-01-03
-Guszti,Tóth,Miskolci Harcosok,Cadet Male Kunite -63 kg,2010-04-05,Male,2024-02-20
-Gergõ,Major,Gyõri Dojó,Cadet Male Kunite -63 kg,2009-08-19,Male,2024-03-12
-Botond,Szabó,Pécsi Küzdõsport Egyesület,Cadet Male Kunite -63 kg,2009-05-25,Male,2024-03-04
-Tihamér,Somogyi,Budapest SC,Cadet Male Kunite -63 kg,2009-06-30,Male,2023-11-15
-Viktor,Somogyi,Szeged Fit,Cadet Male Kunite -63 kg,2009-06-30,Male,2024-01-08
-Ignác,Mészáros,Miskolci Harcosok,Cadet Male Kunite -63 kg,2008-06-07,Male,2024-01-24
-Valér,Veres,Miskolci Harcosok,Cadet Male Kunite -63 kg,2010-10-14,Male,2024-01-25
-Ábel,Hegedûs,Gyõri Dojó,Cadet Male Kunite -63 kg,2010-09-05,Male,2024-01-08
-József,Pásztor,Pécsi Küzdõsport Egyesület,Cadet Male Kunite -63 kg,2009-10-10,Male,2023-12-05
-Uzor,Váradi,Szeged Fit,Cadet Male Kunite -63 kg,2009-10-02,Male,2024-02-28
-Zénó,Farkas,Debrecen Karate SE,Cadet Male Kunite -63 kg,2009-06-25,Male,2023-11-20
-Rezsõ,Balogh,Miskolci Harcosok,Cadet Male Kunite -63 kg,2010-01-12,Male,2024-02-01
-Péter,Farkas,Budapest SC,U14 Male Individual Kata,2012-06-25,Male,2023-10-28
-Dénes,Farkas,Debrecen Karate SE,U14 Male Individual Kata,2012-12-02,Male,2024-01-07
-Ignác,Molnár,Gyõri Dojó,U14 Male Individual Kata,2012-11-02,Male,2024-03-05
-Dezsõ,Gulyás,Debrecen Karate SE,U14 Male Individual Kata,2012-03-19,Male,2024-02-23
-Dodi,László,Szeged Fit,U14 Male Individual Kata,2012-01-25,Male,2024-01-11
-Ede,Sipos,Miskolci Harcosok,U14 Male Individual Kata,2012-12-14,Male,2024-01-21
-Lóránt,Fodor,Debrecen Karate SE,U14 Male Individual Kata,2012-03-22,Male,2024-01-27
-Rudi,Vince,Gyõri Dojó,U14 Male Individual Kata,2012-06-04,Male,2024-03-08
-Iván,Bíró,Budapest SC,U14 Male Individual Kata,2012-03-27,Male,2023-11-30
-Milán,Fekete,Budapest SC,U14 Male Individual Kata,2012-10-10,Male,2024-01-18
-Ábel,Hegedûs,Gyõri Dojó,U14 Male Individual Kata,2012-09-05,Male,2024-01-08
-Huba,Budai,Pécsi Küzdõsport Egyesület,U14 Male Individual Kata,2012-04-22,Male,2024-01-25
-Lulu,Balla,Szeged Fit,U14 Male Individual Kata,2012-06-07,Male,2024-03-04
-Oli,Molnár,Budapest SC,U14 Male Individual Kata,2012-11-02,Male,2024-01-15
-Zénó,Farkas,Debrecen Karate SE,U14 Male Individual Kata,2012-06-25,Male,2023-11-20
-Náci,Budai,Debrecen Karate SE,U14 Male Individual Kata,2012-04-22,Male,2024-01-25
-Gábor,Szabó,Debrecen Karate SE,Cadet Male Individual Kata,2010-08-14,Male,2024-01-20
-Károly,Budai,Budapest SC,Cadet Male Individual Kata,2010-04-22,Male,2024-01-03
-Botond,Szabó,Pécsi Küzdõsport Egyesület,Cadet Male Individual Kata,2009-05-25,Male,2024-03-04
-Oszkár,Bíró,Miskolci Harcosok,Cadet Male Individual Kata,2010-08-16,Male,2024-01-03
-Palkó,Simon,Szeged Fit,Cadet Male Individual Kata,2009-07-15,Male,2024-01-30
-Soma,Rácz,Pécsi Küzdõsport Egyesület,Cadet Male Individual Kata,2009-03-17,Male,2024-01-05
-Bubi,Rácz,Debrecen Karate SE,Cadet Male Individual Kata,2009-03-17,Male,2024-01-05
-Jani,Váradi,Debrecen Karate SE,Cadet Male Individual Kata,2009-10-02,Male,2023-12-18
-Lilla,László,Miskolci Harcosok,Cadet Female Individual Kata,2010-01-25,Female,2024-01-22
-Veronika,Balla,Miskolci Harcosok,Cadet Female Individual Kata,2010-06-07,Female,2024-01-24
-Adél,Tóth,Budapest SC,Cadet Female Individual Kata,2010-01-09,Female,2024-01-14
-Edit,Kelemen,Budapest SC,Cadet Female Individual Kata,2009-02-08,Female,2024-02-14
-Hanna,Török,Szeged Fit,Cadet Female Individual Kata,2010-12-04,Female,2024-01-18
-Lujza,Rácz,Szeged Fit,Cadet Female Individual Kata,2010-05-17,Female,2024-03-05
-Zita,Szalai,Debrecen Karate SE,Cadet Female Individual Kata,2009-03-19,Female,2024-03-02
-Irma,Bíró,Budapest SC,Cadet Female Individual Kata,2010-08-16,Female,2024-01-19
-Krisztina,Balogh,Gyõri Dojó,U14 Female Individual Kata,2013-01-12,Female,2024-01-05
-Alexandra,Király,Szeged Fit,U14 Female Individual Kata,2013-11-11,Female,2024-02-02
-Csilla,Molnár,Miskolci Harcosok,U14 Female Individual Kata,2013-09-17,Female,2024-02-28
-Nikolett,Szõke,Budapest SC,U14 Female Individual Kata,2013-09-12,Female,2023-12-18
-Judit,Farkas,Szeged Fit,U14 Female Individual Kata,2013-06-25,Female,2024-01-20
-Teca,Fekete,Miskolci Harcosok,U14 Female Individual Kata,2013-10-10,Female,2024-02-20
-Cuki,Fekete,Gyõri Dojó,U14 Female Individual Kata,2013-10-10,Female,2024-02-20
-Vica,Molnár,Miskolci Harcosok,U14 Female Individual Kata,2013-11-02,Female,2024-01-15
-Balázs,Juhász,Pécsi Küzdõsport Egyesület,Junior Male Kunite -76 kg,2007-05-20,Male,2024-03-05
-Tibor,Vince,Debrecen Karate SE,Junior Male Kunite -76 kg,2008-06-04,Male,2024-01-16
-Olivér,Hajdu,Budapest SC,Junior Male Kunite -76 kg,2008-07-14,Male,2024-02-15
-Zalán,Sipos,Szeged Fit,Junior Male Kunite -76 kg,2008-12-14,Male,2024-02-06
-Miklós,Hegedûs,Pécsi Küzdõsport Egyesület,Junior Male Kunite -76 kg,2008-09-05,Male,2024-02-10
-Barna,Szilágyi,Pécsi Küzdõsport Egyesület,Junior Male Kunite -76 kg,2008-12-12,Male,2024-01-30
-Döme,Fülöp,Debrecen Karate SE,Junior Male Kunite -76 kg,2007-02-28,Male,2024-02-05
-Áron,Hajdu,Gyõri Dojó,Junior Male Kunite -76 kg,2008-01-30,Male,2024-02-22
-Tamás,Tóth,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-04-05,Male,2024-03-01
-Miklós,Hegedûs,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2008-09-05,Male,2024-02-10
-Zénó,Kiss,Szeged Fit,Junior Male Individual Kata,2007-11-20,Male,2024-02-22
-Zalán,Sipos,Szeged Fit,Junior Male Individual Kata,2008-12-14,Male,2024-02-06
-Áron,Hajdu,Gyõri Dojó,Junior Male Individual Kata,2008-01-30,Male,2024-02-22
-Hetti,Halász,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-08-15,Male,2024-01-16
-Gergely,Fekete,Budapest SC,Junior Male Individual Kata,2008-10-10,Male,2024-02-05
-Richárd,Sándor,Gyõri Dojó,Junior Male Individual Kata,2007-05-18,Male,2023-12-05
-Balázs,Juhász,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-05-20,Male,2024-03-05
-Tibor,Vince,Debrecen Karate SE,Junior Male Individual Kata,2008-06-04,Male,2024-01-16
-Elemér,Varga,Budapest SC,Junior Male Individual Kata,2008-07-18,Male,2024-02-23
-Vid,Mészáros,Budapest SC,Junior Male Individual Kata,2007-12-08,Male,2024-01-20
-Noni,Oláh,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-12-03,Male,2024-02-10
-Soma,Sipos,Gyõri Dojó,Junior Male Individual Kata,2008-09-22,Male,2024-02-14
-Bence,Varga,Szeged Fit,Junior Male Individual Kata,2007-11-11,Male,2024-01-05
-Márk,Kovács,Budapest SC,Junior Male Individual Kata,2008-04-12,Male,2024-02-15
-Palkó,Simon,Szeged Fit,Junior Male Individual Kata,2007-07-15,Male,2024-01-30
-Döme,Fülöp,Debrecen Karate SE,Junior Male Individual Kata,2007-02-28,Male,2024-02-05
-Huba,Oláh,Szeged Fit,Junior Male Individual Kata,2007-12-03,Male,2024-03-08
-Sebestyén,Halász,Debrecen Karate SE,Junior Male Individual Kata,2007-08-15,Male,2024-01-21
-Kázmér,Varga,Miskolci Harcosok,Junior Male Individual Kata,2007-07-18,Male,2023-12-28
-Tomi,Kelemen,Miskolci Harcosok,Junior Male Individual Kata,2007-02-08,Male,2024-03-14
-Oli,Somogyi,Budapest SC,Junior Male Individual Kata,2008-06-30,Male,2023-12-12
-Cid,Kelemen,Gyõri Dojó,Junior Male Individual Kata,2007-02-08,Male,2024-03-14
-Ádi,Balogh,Gyõri Dojó,Junior Male Individual Kata,2008-01-12,Male,2024-02-01
-Fifi,Simon,Debrecen Karate SE,Junior Male Individual Kata,2007-07-15,Male,2024-02-12
-Joci,László,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2008-01-25,Male,2024-01-11
-Robi,Veres,Miskolci Harcosok,Junior Male Individual Kata,2007-10-14,Male,2024-01-22
-Lali,Gál,Debrecen Karate SE,Junior Male Individual Kata,2007-08-09,Male,2024-01-18
-Vili,Király,Budapest SC,Junior Male Individual Kata,2007-11-11,Male,2024-03-02
-Szabi,Nagy,Szeged Fit,Junior Male Individual Kata,2008-05-05,Male,2024-01-20
+Kevin,Vince,Tatabányai Harcmûvész Klub,Junior Male Individual Kata,2007-09-09,Male,2024-03-01
+Dani,Fekete,Kecskeméti Bushido,Senior Male Kumite -75 kg,1988-10-14,Male,2024-02-13
+Patrik,Gulyás,Miskolci Harcosok,U14 Male Individual Kata,2013-10-04,Male,2024-03-28
+Nándor,Tóth,Veszprémi Budo Klub,Junior Male Kumite -76 kg,2008-11-03,Male,2024-03-24
+Zita,Szabó,Szolnoki Samurai SE,Cadet Female Kumite -54 kg,2010-12-13,Female,2024-02-24
+Milán,Budai,Miskolci Harcosok,Senior Male Kumite -75 kg,1991-02-19,Male,2024-01-17
+Alida,Halász,Veszprémi Budo Klub,Senior Female Individual Kata,1999-01-02,Female,2024-01-07
+Réka,Balla,Tatabányai Harcmûvész Klub,Junior Female Kumite -59 kg,2007-10-10,Female,2024-01-01
+Xénia,Bíró,Miskolci Harcosok,U14 Female Kumite -42 kg,2012-04-13,Female,2024-03-21
+Béla,Tóth,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2003-01-09,Male,2024-03-18
+Soma,Gulyás,Szeged Fit,Cadet Male Kumite -63 kg,2010-02-05,Male,2024-03-15
+Toni,Rácz,Veszprémi Budo Klub,U21 Male Kumite -84 kg,2005-07-25,Male,2024-01-17
+Oszkár,Molnár,Veszprémi Budo Klub,Junior Male Individual Kata,2008-11-13,Male,2024-01-15
+Ignác,Szilágyi,Debrecen Karate SE,U21 Male Individual Kata,2003-02-28,Male,2024-01-02
+Kornél,Király,Szeged Fit,U21 Male Individual Kata,2006-12-23,Male,2024-01-28
+Ábel,Sándor,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2003-03-05,Male,2024-01-03
+Tihamér,Budai,Debrecen Karate SE,U21 Male Kumite -84 kg,2005-12-03,Male,2024-02-13
+Aladár,Király,Szeged Fit,U14 Male Individual Kata,2013-02-28,Male,2024-03-06
+Tamás,Kovács,Szolnoki Samurai SE,Senior Male Individual Kata,1991-09-08,Male,2024-03-11
+Zita,Papp,Kecskeméti Bushido,Senior Female Individual Kata,1990-04-18,Female,2024-01-20
+Bence,Major,Szeged Fit,Senior Male Kumite -75 kg,1990-11-18,Male,2024-03-23
+Teca,Bakos,Miskolci Harcosok,U14 Female Individual Kata,2012-09-23,Female,2024-03-04
+Elemér,Veres,Debrecen Karate SE,U21 Male Individual Kata,2003-07-26,Male,2024-02-06
+Nándor,Rácz,Budapest SC,Senior Male Kumite -75 kg,1993-12-19,Male,2024-02-25
+Patrik,Mészáros,Tatabányai Harcmûvész Klub,Senior Male Individual Kata,1992-04-06,Male,2024-02-18
+Eszter,Kelemen,Miskolci Harcosok,U21 Female Individual Kata,2004-07-06,Female,2024-02-03
+Bence,Somogyi,Szeged Fit,Senior Male Kumite -75 kg,1998-06-27,Male,2024-02-04
+Oszkár,Szabó,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2005-02-05,Male,2024-03-19
+Viktor,Sándor,Veszprémi Budo Klub,Junior Male Kumite -76 kg,2007-12-04,Male,2024-03-14
+Anita,Vince,Veszprémi Budo Klub,Cadet Female Individual Kata,2009-11-25,Female,2024-01-13
+Walter,Veres,Veszprémi Budo Klub,U21 Male Kumite -84 kg,2005-02-20,Male,2024-02-08
+Edit,Pásztor,Debrecen Karate SE,Junior Female Kumite -59 kg,2008-02-17,Female,2024-03-05
+Krisztina,Kovács,Debrecen Karate SE,Senior Female Individual Kata,1995-03-01,Female,2024-01-10
+Joli,Török,Tatabányai Harcmûvész Klub,Cadet Female Kumite -54 kg,2009-04-24,Female,2024-02-05
+Erik,Kanyó,Budapest SC,U21 Male Individual Kata,2003-01-28,Male,2024-02-21
+Lilla,Vass,Szeged Fit,Senior Female Individual Kata,1991-04-15,Female,2024-01-08
+Tamás,Kocsis,Miskolci Harcosok,Senior Male Kumite -75 kg,1992-09-15,Male,2024-02-11
+Béla,Mészáros,Miskolci Harcosok,Junior Male Individual Kata,2008-01-24,Male,2024-02-07
+Hanna,Kiss,Pécsi Küzdõsport Egyesület,Junior Female Kumite -59 kg,2008-08-12,Female,2024-03-10
+Mici,Pásztor,Tatabányai Harcmûvész Klub,U14 Female Kumite -47 kg,2012-07-15,Female,2024-02-03
+Gergely,Szilágyi,Kecskeméti Bushido,Senior Male Kumite -75 kg,1989-04-17,Male,2024-02-06
+Vid,Pintér,Kecskeméti Bushido,Senior Male Kumite -75 kg,1988-08-06,Male,2024-03-18
+Sándor,Major,Tatabányai Harcmûvész Klub,U21 Male Kumite -84 kg,2006-09-04,Male,2024-02-05
+Zita,Szõke,Szolnoki Samurai SE,Junior Female Individual Kata,2008-09-19,Female,2024-03-04
+Zoltán,Molnár,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2005-04-26,Male,2024-02-04
+Kornél,Hajdu,Szeged Fit,Junior Male Individual Kata,2008-04-05,Male,2024-03-09
+Richárd,Király,Pécsi Küzdõsport Egyesület,Senior Male Kumite -75 kg,1994-11-24,Male,2024-01-25
+Aladár,Horváth,Szolnoki Samurai SE,Senior Male Individual Kata,1998-09-02,Male,2024-01-15
+József,Hegedûs,Veszprémi Budo Klub,U21 Male Individual Kata,2004-09-14,Male,2024-02-02
+Noel,Rácz,Kecskeméti Bushido,U14 Male Kumite -50 kg,2013-02-28,Male,2024-03-28
+Gitta,Tóth,Szeged Fit,Cadet Female Individual Kata,2010-02-26,Female,2024-02-08
+József,Vince,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2003-04-02,Male,2024-01-11
+Vid,Mészáros,Budapest SC,Cadet Male Kumite -63 kg,2009-06-09,Male,2024-03-28
+Sándor,Pintér,Debrecen Karate SE,U21 Male Individual Kata,2003-04-12,Male,2024-01-09
+Szilvia,Boros,Miskolci Harcosok,Junior Female Kumite -59 kg,2008-03-06,Female,2024-03-12
+Kinga,Veres,Veszprémi Budo Klub,U21 Female Individual Kata,2005-09-25,Female,2024-03-22
+Walter,Sipos,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1997-07-10,Male,2024-01-01
+Zénó,Bíró,Kecskeméti Bushido,Junior Male Individual Kata,2008-06-25,Male,2024-03-02
+Richárd,Budai,Miskolci Harcosok,U21 Male Kumite -84 kg,2006-09-21,Male,2024-03-13
+Szonja,Halász,Gyõri Dojó,Senior Female Individual Kata,1990-05-04,Female,2024-03-11
+József,Fülöp,Debrecen Karate SE,U21 Male Individual Kata,2005-05-11,Male,2024-01-21
+Zalán,Kocsis,Szolnoki Samurai SE,Senior Male Kumite -75 kg,1999-06-24,Male,2024-02-02
+Alida,Somogyi,Veszprémi Budo Klub,U14 Female Kumite -47 kg,2012-06-22,Female,2024-02-26
+Cid,Veres,Kecskeméti Bushido,Senior Male Kumite -75 kg,1999-06-04,Male,2024-01-03
+Elemér,Fülöp,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2003-08-21,Male,2024-03-13
+László,Hegedûs,Tatabányai Harcmûvész Klub,U21 Male Individual Kata,2006-10-15,Male,2024-03-04
+Botond,Tóth,Pécsi Küzdõsport Egyesület,Senior Male Kumite -75 kg,1998-12-06,Male,2024-01-23
+Blanka,Halász,Budapest SC,U21 Female Individual Kata,2004-02-11,Female,2024-03-23
+Csenge,Vass,Szolnoki Samurai SE,Junior Female Individual Kata,2007-07-06,Female,2024-03-10
+Aladár,Nagy,Kecskeméti Bushido,U21 Male Individual Kata,2006-04-02,Male,2024-01-04
+Béla,Szõke,Debrecen Karate SE,U14 Male Individual Kata,2012-09-18,Male,2024-03-21
+Anita,Szalai,Veszprémi Budo Klub,U21 Female Individual Kata,2005-11-14,Female,2024-01-06
+Soma,Gulyás,Pécsi Küzdõsport Egyesület,U21 Male Kumite -84 kg,2005-09-22,Male,2024-01-07
+Milán,Tóth,Debrecen Karate SE,U21 Male Kumite -84 kg,2004-10-01,Male,2024-03-07
+Sebestyén,Major,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2005-08-20,Male,2024-03-01
+Ábel,Vince,Veszprémi Budo Klub,Cadet Male Individual Kata,2009-10-20,Male,2024-02-27
+Nadin,Kocsis,Gyõri Dojó,U21 Female Individual Kata,2003-12-07,Female,2024-02-23
+Patrik,Veres,Szolnoki Samurai SE,Junior Male Individual Kata,2008-08-28,Male,2024-03-04
+Bence,Farkas,Tatabányai Harcmûvész Klub,U21 Male Kumite -84 kg,2006-11-06,Male,2024-01-28
+Robi,Lakatos,Tatabányai Harcmûvész Klub,Senior Male Individual Kata,1990-08-07,Male,2024-02-02
+Márk,Pintér,Pécsi Küzdõsport Egyesület,Senior Male Kumite -75 kg,1997-08-21,Male,2024-01-09
+Oli,Oláh,Szeged Fit,Senior Male Individual Kata,1999-02-22,Male,2024-02-13
+Miron,Barta,Tatabányai Harcmûvész Klub,Senior Male Individual Kata,1992-09-28,Male,2024-01-13
+Dezsõ,Kiss,Budapest SC,U21 Male Individual Kata,2004-05-15,Male,2024-03-27
+Cid,Fekete,Szolnoki Samurai SE,Senior Male Individual Kata,1992-01-16,Male,2024-02-28
+Tibor,Rácz,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2004-05-22,Male,2024-03-22
+Gabi,Vörös,Tatabányai Harcmûvész Klub,Cadet Female Kumite -54 kg,2010-05-18,Female,2024-02-10
+Bendegúz,Kiss,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2005-10-24,Male,2024-03-03
+Soma,Mészáros,Gyõri Dojó,U21 Male Kumite -84 kg,2004-09-28,Male,2024-01-15
+Emi,Kelemen,Kecskeméti Bushido,Junior Female Individual Kata,2007-09-18,Female,2024-03-19
+Teca,Bakos,Kecskeméti Bushido,Senior Female Individual Kata,1992-06-02,Female,2024-01-06
+András,Fodor,Szeged Fit,Senior Male Kumite -75 kg,1996-08-21,Male,2024-02-14
+Gellért,Kovács,Miskolci Harcosok,U21 Male Individual Kata,2006-10-27,Male,2024-03-25
+László,Szalai,Kecskeméti Bushido,Junior Male Kumite -76 kg,2007-06-20,Male,2024-02-23
+Oda,Somogyi,Tatabányai Harcmûvész Klub,U14 Female Kumite -47 kg,2012-11-09,Female,2024-03-23
+Szonja,Mészáros,Budapest SC,U21 Female Individual Kata,2004-09-03,Female,2024-01-27
+Csaba,Váradi,Szeged Fit,Junior Male Kumite -76 kg,2007-08-06,Male,2024-01-24
+Marcell,Fekete,Szolnoki Samurai SE,Senior Male Kumite -75 kg,1996-05-20,Male,2024-03-21
+Attila,Kelemen,Miskolci Harcosok,Junior Male Kumite -76 kg,2007-07-18,Male,2024-01-21
+Cid,Bakos,Miskolci Harcosok,Senior Male Individual Kata,1997-10-14,Male,2024-03-12
+Elemér,Sándor,Budapest SC,Junior Male Individual Kata,2007-05-18,Male,2024-02-21
+István,Molnár,Tatabányai Harcmûvész Klub,U21 Male Individual Kata,2005-02-27,Male,2024-01-21
+Miron,Boros,Miskolci Harcosok,U21 Male Individual Kata,2005-11-15,Male,2024-01-26
+Maja,Sipos,Tatabányai Harcmûvész Klub,Senior Female Individual Kata,1995-05-25,Female,2024-03-08
+Soma,Halász,Kecskeméti Bushido,Junior Male Kumite -76 kg,2007-07-03,Male,2024-03-23
+Gergely,Pintér,Kecskeméti Bushido,Senior Male Individual Kata,1990-07-25,Male,2024-01-28
+Kinga,Gulyás,Kecskeméti Bushido,Cadet Female Kumite -54 kg,2010-03-23,Female,2024-02-09
+Tihamér,Szilágyi,Miskolci Harcosok,Cadet Male Kumite -63 kg,2010-10-05,Male,2024-01-16
+Róza,Oláh,Szeged Fit,Junior Female Individual Kata,2007-07-01,Female,2024-02-19
+Lili,Nagy,Kecskeméti Bushido,Junior Female Individual Kata,2007-11-16,Female,2024-01-07
+Marcell,Veres,Kecskeméti Bushido,Junior Male Kumite -76 kg,2007-06-20,Male,2024-02-10
+Alida,Bakos,Gyõri Dojó,U21 Female Individual Kata,2004-07-28,Female,2024-03-03
+Zénó,Hegedûs,Kecskeméti Bushido,U21 Male Individual Kata,2004-02-21,Male,2024-03-07
+Vivien,Hajdu,Miskolci Harcosok,Senior Female Individual Kata,1999-04-12,Female,2024-01-09
+Gellért,Kanyó,Gyõri Dojó,Senior Male Individual Kata,1994-03-15,Male,2024-03-04
+Noel,Gál,Debrecen Karate SE,U21 Male Kumite -84 kg,2005-04-13,Male,2024-02-09
+Valér,Vass,Pécsi Küzdõsport Egyesület,U21 Male Individual Kata,2003-08-27,Male,2024-03-20
+Oszkár,Rácz,Tatabányai Harcmûvész Klub,Junior Male Individual Kata,2007-07-20,Male,2024-01-07
+Ábel,Fülöp,Debrecen Karate SE,U21 Male Individual Kata,2003-05-05,Male,2024-01-18
+Walter,Balla,Debrecen Karate SE,Senior Male Kumite -75 kg,1996-03-01,Male,2024-02-06
+Alida,Boros,Budapest SC,Junior Female Kumite -59 kg,2007-11-21,Female,2024-02-19
+András,Király,Debrecen Karate SE,Cadet Male Individual Kata,2009-08-09,Male,2024-01-08
+Johanna,Oláh,Szolnoki Samurai SE,Junior Female Kumite -59 kg,2008-02-24,Female,2024-01-22
+Noémi,Fodor,Gyõri Dojó,Junior Female Individual Kata,2007-07-21,Female,2024-02-14
+Sándor,Hegedûs,Veszprémi Budo Klub,U21 Male Kumite -84 kg,2003-11-26,Male,2024-01-17
+Gitta,Papp,Pécsi Küzdõsport Egyesület,Cadet Female Kumite -54 kg,2010-04-03,Female,2024-01-10
+Alida,Szilágyi,Miskolci Harcosok,Cadet Female Individual Kata,2009-08-03,Female,2024-01-17
+Boglárka,Simon,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2008-01-20,Female,2024-02-28
+Viktor,Hegedûs,Pécsi Küzdõsport Egyesület,Junior Male Kumite -76 kg,2007-10-10,Male,2024-01-08
+Gitta,Horváth,Tatabányai Harcmûvész Klub,Senior Female Individual Kata,1992-08-21,Female,2024-02-04
+Vid,Pásztor,Gyõri Dojó,U21 Male Individual Kata,2004-08-14,Male,2024-01-07
+Zoé,Balla,Szolnoki Samurai SE,Cadet Female Individual Kata,2009-03-02,Female,2024-03-11
+Marcell,Török,Veszprémi Budo Klub,U21 Male Kumite -84 kg,2006-11-28,Male,2024-02-24
+Bendegúz,Nagy,Tatabányai Harcmûvész Klub,Junior Male Kumite -76 kg,2007-12-05,Male,2024-03-21
+Fülöp,Király,Tatabányai Harcmûvész Klub,Senior Male Kumite -75 kg,1995-11-26,Male,2024-03-19
+Dani,Horváth,Tatabányai Harcmûvész Klub,Senior Male Kumite -75 kg,1988-09-18,Male,2024-02-03
+Tomi,Török,Szeged Fit,Senior Male Kumite -75 kg,1995-06-13,Male,2024-02-03
+Marcell,Barta,Gyõri Dojó,Junior Male Individual Kata,2008-12-02,Male,2024-02-20
+Lajos,Hajdu,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1993-03-03,Male,2024-01-04
+Johanna,Sipos,Gyõri Dojó,U14 Female Kumite -47 kg,2012-12-15,Female,2024-03-15
+Jenõ,Szabó,Pécsi Küzdõsport Egyesület,Senior Male Kumite -75 kg,1996-02-15,Male,2024-03-01
+Palkó,Major,Kecskeméti Bushido,Junior Male Kumite -76 kg,2008-08-12,Male,2024-02-20
+Soma,Oláh,Debrecen Karate SE,Cadet Male Kumite -63 kg,2009-07-15,Male,2024-03-08
+Dalma,Vince,Budapest SC,U21 Female Individual Kata,2006-08-13,Female,2024-02-02
+Zizi,Sándor,Kecskeméti Bushido,U14 Female Kumite -47 kg,2012-09-23,Female,2024-02-14
+Viktória,Molnár,Veszprémi Budo Klub,U21 Female Individual Kata,2005-12-21,Female,2024-03-11
+Csaba,Hajdu,Veszprémi Budo Klub,Senior Male Kumite -75 kg,1995-05-02,Male,2024-01-17
+Anita,Király,Tatabányai Harcmûvész Klub,U14 Female Individual Kata,2012-06-24,Female,2024-02-09
+Gellért,Vörös,Budapest SC,Senior Male Kumite -75 kg,1990-02-20,Male,2024-01-14
+Márk,Bíró,Miskolci Harcosok,Senior Male Individual Kata,1990-02-03,Male,2024-01-18
+Jenõ,Szabó,Tatabányai Harcmûvész Klub,U21 Male Kumite -84 kg,2005-01-08,Male,2024-03-23
+Lujza,Simon,Miskolci Harcosok,Junior Female Individual Kata,2007-02-13,Female,2024-01-17
+Robi,Szabó,Szeged Fit,U21 Male Individual Kata,2005-09-13,Male,2024-02-02
+Jenõ,Kocsis,Szeged Fit,Junior Male Kumite -76 kg,2007-01-26,Male,2024-02-04
+Gabi,Hajdu,Szolnoki Samurai SE,Senior Female Individual Kata,1999-10-04,Female,2024-02-14
+Noémi,Török,Szeged Fit,Senior Female Individual Kata,1994-04-24,Female,2024-02-16
+Róza,Simon,Szeged Fit,Cadet Female Kumite -54 kg,2009-12-21,Female,2024-01-27
+Csenge,Veres,Tatabányai Harcmûvész Klub,U14 Female Individual Kata,2012-04-16,Female,2024-03-17
+Dezsõ,Hajdu,Tatabányai Harcmûvész Klub,Senior Male Individual Kata,1995-10-12,Male,2024-01-16
+Xénia,Kiss,Kecskeméti Bushido,Junior Female Individual Kata,2007-09-21,Female,2024-03-01
+Attila,Major,Budapest SC,Senior Male Kumite -75 kg,1998-12-26,Male,2024-02-14
+Peti,Papp,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2005-07-05,Male,2024-03-06
+Elemér,Lakatos,Gyõri Dojó,Senior Male Individual Kata,1990-08-08,Male,2024-03-20
+Miklós,Szalai,Szeged Fit,U21 Male Kumite -84 kg,2003-02-10,Male,2024-02-17
+András,Molnár,Debrecen Karate SE,Junior Male Individual Kata,2008-10-15,Male,2024-02-01
+Viktória,Lakatos,Szolnoki Samurai SE,Senior Female Individual Kata,1992-11-04,Female,2024-02-21
+Richárd,Pásztor,Miskolci Harcosok,Senior Male Individual Kata,1998-04-28,Male,2024-03-03
+Zsófi,Papp,Kecskeméti Bushido,Junior Female Kumite -59 kg,2007-01-07,Female,2024-03-13
+Dániel,Pásztor,Debrecen Karate SE,Senior Male Kumite -75 kg,1990-11-05,Male,2024-03-11
+Botond,Rácz,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1991-08-14,Male,2024-02-11
+Toni,Kocsis,Pécsi Küzdõsport Egyesület,U14 Male Individual Kata,2012-07-14,Male,2024-02-11
+Csenge,Halász,Debrecen Karate SE,Cadet Female Kumite -54 kg,2010-01-20,Female,2024-02-27
+Barna,Boros,Pécsi Küzdõsport Egyesület,U21 Male Kumite -84 kg,2005-02-09,Male,2024-02-10
+Szabi,Váradi,Budapest SC,Cadet Male Kumite -63 kg,2010-12-08,Male,2024-03-13
+Melinda,Takács,Szeged Fit,U21 Female Individual Kata,2006-07-16,Female,2024-01-10
+Lili,Papp,Tatabányai Harcmûvész Klub,U21 Female Individual Kata,2003-11-19,Female,2024-03-06
+Nadin,Mészáros,Budapest SC,Senior Female Individual Kata,1990-09-23,Female,2024-03-03
+Jenõ,Balogh,Budapest SC,U21 Male Individual Kata,2004-07-04,Male,2024-02-10
+Robi,Vince,Pécsi Küzdõsport Egyesület,Junior Male Individual Kata,2007-03-11,Male,2024-01-23
+Szilvia,Oláh,Szeged Fit,Senior Female Individual Kata,1994-09-04,Female,2024-02-23
+Zsófi,Takács,Veszprémi Budo Klub,Senior Female Individual Kata,1995-10-03,Female,2024-01-26
+Eszter,Pásztor,Kecskeméti Bushido,Junior Female Kumite -59 kg,2008-06-06,Female,2024-01-25
+Kristóf,Sipos,Veszprémi Budo Klub,Senior Male Individual Kata,1996-08-03,Male,2024-01-26
+Dalma,Vince,Miskolci Harcosok,Senior Female Individual Kata,1997-11-12,Female,2024-02-08
+Alida,Juhász,Pécsi Küzdõsport Egyesület,U21 Female Individual Kata,2003-09-18,Female,2024-02-03
+Kristóf,Bakos,Kecskeméti Bushido,Senior Male Individual Kata,1993-03-22,Male,2024-03-20
+Domonkos,Horváth,Debrecen Karate SE,Senior Male Kumite -75 kg,1988-09-13,Male,2024-02-23
+Hanna,Farkas,Szeged Fit,Cadet Female Kumite -54 kg,2009-02-20,Female,2024-01-06
+Szilvia,Kocsis,Szolnoki Samurai SE,Junior Female Individual Kata,2007-10-28,Female,2024-01-16
+István,Váradi,Szeged Fit,U14 Male Individual Kata,2012-04-01,Male,2024-03-04
+Oda,Kelemen,Debrecen Karate SE,Junior Female Kumite -59 kg,2007-03-02,Female,2024-03-22
+Gergely,Szalai,Pécsi Küzdõsport Egyesület,Senior Male Individual Kata,1992-01-08,Male,2024-03-12
+Rezsõ,Kelemen,Szeged Fit,U21 Male Kumite -84 kg,2003-11-27,Male,2024-03-22
+Melinda,Rácz,Szeged Fit,U21 Female Individual Kata,2005-12-26,Female,2024-02-21
+Peti,Fodor,Kecskeméti Bushido,Senior Male Individual Kata,1997-08-12,Male,2024-01-26
+Noémi,Szilágyi,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1993-03-07,Female,2024-03-26
+Nikolett,Fodor,Szeged Fit,Senior Female Individual Kata,1997-03-18,Female,2024-03-28
+Levente,Gál,Miskolci Harcosok,Senior Male Kumite -75 kg,1992-08-02,Male,2024-01-19
+Erik,Pintér,Szeged Fit,Senior Male Individual Kata,1996-06-19,Male,2024-01-13
+Gergely,Major,Kecskeméti Bushido,U14 Male Kumite -50 kg,2012-02-10,Male,2024-01-15
+Walter,Hegedûs,Debrecen Karate SE,U21 Male Kumite -84 kg,2004-03-07,Male,2024-03-05
+Márk,Szõke,Veszprémi Budo Klub,U21 Male Kumite -84 kg,2006-11-10,Male,2024-03-24
+Gellért,Fodor,Miskolci Harcosok,Junior Male Individual Kata,2008-01-01,Male,2024-03-04
+Walter,Balogh,Szolnoki Samurai SE,Junior Male Kumite -76 kg,2008-08-17,Male,2024-01-11
+András,Lakatos,Miskolci Harcosok,Cadet Male Individual Kata,2009-09-26,Male,2024-03-04
+Márton,Vince,Debrecen Karate SE,Senior Male Kumite -75 kg,1991-10-12,Male,2024-03-19
+Arnold,Fülöp,Kecskeméti Bushido,U14 Male Kumite -45 kg,2013-02-12,Male,2024-02-28
+Tünde,Vince,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1991-10-25,Female,2024-01-20
+Yvette,Bakos,Veszprémi Budo Klub,Senior Female Individual Kata,1990-06-17,Female,2024-03-18
+Viktor,Hajdu,Miskolci Harcosok,Junior Male Kumite -76 kg,2008-09-13,Male,2024-03-05
+Oda,Kiss,Szolnoki Samurai SE,Senior Female Individual Kata,1993-11-11,Female,2024-01-01
+Sebestyén,Török,Szolnoki Samurai SE,U14 Male Kumite -50 kg,2013-10-05,Male,2024-02-09
+Imre,Gulyás,Debrecen Karate SE,U21 Male Kumite -84 kg,2003-09-15,Male,2024-03-04
+Peti,Fülöp,Debrecen Karate SE,Senior Male Kumite -75 kg,1990-03-17,Male,2024-02-27
+Ábel,Boros,Miskolci Harcosok,Senior Male Individual Kata,1993-04-23,Male,2024-03-14
+Janka,Oláh,Miskolci Harcosok,Junior Female Individual Kata,2008-11-22,Female,2024-01-02
+Gellért,Bíró,Pécsi Küzdõsport Egyesület,Senior Male Kumite -75 kg,1988-09-24,Male,2024-03-10
+Veronika,Vince,Pécsi Küzdõsport Egyesület,Junior Female Kumite -59 kg,2008-04-17,Female,2024-02-02
+Walter,Juhász,Debrecen Karate SE,U21 Male Individual Kata,2004-09-06,Male,2024-01-21
+Melinda,Gál,Tatabányai Harcmûvész Klub,Junior Female Individual Kata,2007-07-10,Female,2024-02-04
+Joli,Gulyás,Kecskeméti Bushido,Senior Female Individual Kata,1996-02-22,Female,2024-01-06
+Judit,Budai,Kecskeméti Bushido,U21 Female Individual Kata,2006-07-15,Female,2024-03-24
+Attila,Simon,Kecskeméti Bushido,U14 Male Individual Kata,2012-07-02,Male,2024-01-21
+Döme,Rácz,Gyõri Dojó,Senior Male Kumite -75 kg,1994-12-09,Male,2024-01-07
+Tihamér,Fekete,Debrecen Karate SE,Senior Male Individual Kata,1990-10-02,Male,2024-03-21
+Boglárka,Kiss,Tatabányai Harcmûvész Klub,U14 Female Kumite -42 kg,2013-02-20,Female,2024-03-10
+Bálint,Gulyás,Budapest SC,Senior Male Individual Kata,1990-08-14,Male,2024-02-11
+Barna,Vörös,Gyõri Dojó,U21 Male Kumite -84 kg,2006-04-10,Male,2024-03-25
+Alida,Török,Veszprémi Budo Klub,Senior Female Individual Kata,1991-09-14,Female,2024-02-05
+Gréta,Bíró,Kecskeméti Bushido,Junior Female Individual Kata,2007-06-27,Female,2024-01-26
+Walter,Vörös,Gyõri Dojó,Senior Male Individual Kata,1991-05-25,Male,2024-01-28
+Kevin,Fodor,Szolnoki Samurai SE,U14 Male Kumite -50 kg,2012-10-24,Male,2024-01-10
+Márk,Vörös,Debrecen Karate SE,Junior Male Kumite -76 kg,2008-12-05,Male,2024-03-25
+Szabi,Oláh,Szolnoki Samurai SE,Junior Male Individual Kata,2007-11-02,Male,2024-01-13
+Noel,Fodor,Tatabányai Harcmûvész Klub,U14 Male Individual Kata,2012-09-05,Male,2024-03-16
+Marcell,Mészáros,Gyõri Dojó,Junior Male Individual Kata,2007-07-15,Male,2024-03-21
+Botond,Fekete,Gyõri Dojó,U21 Male Individual Kata,2003-11-16,Male,2024-01-19
+Botond,Sipos,Miskolci Harcosok,Senior Male Individual Kata,1990-01-26,Male,2024-03-10
+Csilla,Halász,Veszprémi Budo Klub,Junior Female Kumite -59 kg,2007-07-02,Female,2024-03-27
+Döme,Bíró,Pécsi Küzdõsport Egyesület,U21 Male Kumite -84 kg,2004-06-17,Male,2024-01-25
+Miklós,Horváth,Veszprémi Budo Klub,Junior Male Individual Kata,2008-10-18,Male,2024-02-21
+Sándor,Balla,Miskolci Harcosok,Cadet Male Kumite -63 kg,2010-05-28,Male,2024-03-02
+András,Tóth,Budapest SC,U21 Male Individual Kata,2003-12-15,Male,2024-01-13
+Milán,Barta,Pécsi Küzdõsport Egyesület,U14 Male Kumite -50 kg,2013-05-24,Male,2024-02-14
+Levente,Török,Budapest SC,U21 Male Individual Kata,2005-09-05,Male,2024-03-21
+Csaba,Vince,Budapest SC,Cadet Male Kumite -63 kg,2009-02-05,Male,2024-03-18
+Vivien,Kocsis,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2008-06-04,Female,2024-03-28
+Teca,Rácz,Kecskeméti Bushido,Senior Female Individual Kata,1994-06-25,Female,2024-02-26
+Dezsõ,Fodor,Tatabányai Harcmûvész Klub,U14 Male Kumite -50 kg,2013-06-16,Male,2024-03-26
+Szabi,Farkas,Gyõri Dojó,Senior Male Individual Kata,1997-08-23,Male,2024-01-07
+Imre,Gál,Szeged Fit,Cadet Male Individual Kata,2010-04-20,Male,2024-01-21
+Léna,Kiss,Kecskeméti Bushido,U14 Female Kumite -42 kg,2012-02-01,Female,2024-01-11
+Léna,Bíró,Miskolci Harcosok,Senior Female Individual Kata,1999-10-02,Female,2024-01-13
+Attila,Sándor,Veszprémi Budo Klub,Senior Male Kumite -75 kg,1998-08-22,Male,2024-01-19
+Elemér,Farkas,Debrecen Karate SE,Senior Male Individual Kata,1995-01-16,Male,2024-01-19
+Nikolett,Király,Tatabányai Harcmûvész Klub,Senior Female Individual Kata,1999-02-19,Female,2024-01-01
+Nándor,Balogh,Kecskeméti Bushido,Senior Male Individual Kata,1993-04-03,Male,2024-03-13
+Márton,Barta,Kecskeméti Bushido,U14 Male Individual Kata,2013-02-05,Male,2024-01-02
+Melinda,Lakatos,Miskolci Harcosok,Senior Female Individual Kata,1992-03-03,Female,2024-01-07
+Rebeka,Kelemen,Pécsi Küzdõsport Egyesület,Junior Female Individual Kata,2008-05-20,Female,2024-03-18
+István,Barta,Debrecen Karate SE,U21 Male Individual Kata,2006-01-17,Male,2024-03-26
+Zalán,Sándor,Budapest SC,Cadet Male Kumite -63 kg,2009-07-16,Male,2024-01-05
+Tünde,Papp,Szeged Fit,U21 Female Individual Kata,2004-05-24,Female,2024-03-13
+Nóra,Sándor,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1992-11-22,Female,2024-03-21
+Léna,Simon,Gyõri Dojó,Senior Female Individual Kata,1994-10-12,Female,2024-01-18
+Yvette,Horváth,Budapest SC,U14 Female Kumite -47 kg,2013-11-16,Female,2024-01-05
+Gitta,Hajdu,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1997-10-03,Female,2024-02-04
+Áron,Somogyi,Pécsi Küzdõsport Egyesület,U21 Male Kumite -84 kg,2005-07-25,Male,2024-01-15
+Miklós,Major,Szolnoki Samurai SE,U21 Male Kumite -84 kg,2006-11-14,Male,2024-03-19
+Nóra,Budai,Pécsi Küzdõsport Egyesület,Senior Female Individual Kata,1994-03-25,Female,2024-03-10
+Viktória,Király,Tatabányai Harcmûvész Klub,Junior Female Kumite -59 kg,2007-11-27,Female,2024-01-14
+Pál,Szalai,Szeged Fit,Junior Male Kumite -76 kg,2008-10-09,Male,2024-03-01
+Márk,Tóth,Budapest SC,U21 Male Kumite -84 kg,2005-01-20,Male,2024-01-01
+Beáta,Gulyás,Gyõri Dojó,Senior Female Individual Kata,1997-02-22,Female,2024-03-18
+Zénó,Vince,Szeged Fit,U21 Male Kumite -84 kg,2004-03-21,Male,2024-03-12
+Zoltán,Sándor,Gyõri Dojó,Junior Male Kumite -76 kg,2007-01-16,Male,2024-01-01
+Adél,Pintér,Tatabányai Harcmûvész Klub,U14 Female Individual Kata,2012-06-26,Female,2024-01-20
+Dániel,Kovács,Veszprémi Budo Klub,Senior Male Individual Kata,1990-01-17,Male,2024-01-17
+Dániel,Papp,Szeged Fit,U21 Male Individual Kata,2003-06-15,Male,2024-01-23
+Lujza,Vörös,Veszprémi Budo Klub,Junior Female Kumite -59 kg,2008-08-19,Female,2024-02-28
+Dániel,Kanyó,Veszprémi Budo Klub,U21 Male Individual Kata,2006-02-12,Male,2024-02-25
+Oszkár,Oláh,Gyõri Dojó,U21 Male Kumite -84 kg,2003-08-24,Male,2024-01-17
+Zénó,Nagy,Gyõri Dojó,Junior Male Individual Kata,2008-01-26,Male,2024-02-05
+Lajos,Kovács,Gyõri Dojó,U14 Male Kumite -45 kg,2012-01-17,Male,2024-01-21
+Huba,Pintér,Miskolci Harcosok,Senior Male Kumite -75 kg,1994-12-13,Male,2024-01-21
+Saci,Takács,Debrecen Karate SE,Junior Female Kumite -59 kg,2007-12-14,Female,2024-03-23
+Orsi,Fekete,Szeged Fit,Junior Female Kumite -59 kg,2008-02-06,Female,2024-02-08
+Irma,Balla,Gyõri Dojó,U14 Female Kumite -47 kg,2013-09-09,Female,2024-03-12
+Sándor,Lakatos,Budapest SC,U14 Male Kumite -45 kg,2013-12-22,Male,2024-02-04
+Fanni,Vörös,Pécsi Küzdõsport Egyesület,U14 Female Kumite -42 kg,2013-09-09,Female,2024-01-22
+Oli,Balla,Szolnoki Samurai SE,U21 Male Individual Kata,2005-09-23,Male,2024-01-07
+Luca,Fodor,Kecskeméti Bushido,U14 Female Kumite -47 kg,2013-08-19,Female,2024-01-05
+Sebestyén,Nagy,Gyõri Dojó,U21 Male Kumite -84 kg,2004-06-22,Male,2024-01-14
+Botond,Hajdu,Tatabányai Harcmûvész Klub,U14 Male Kumite -50 kg,2013-09-02,Male,2024-02-11
+Flóra,Sipos,Veszprémi Budo Klub,Junior Female Individual Kata,2007-03-19,Female,2024-03-18
+Johanna,Budai,Veszprémi Budo Klub,Junior Female Kumite -59 kg,2007-02-14,Female,2024-01-25
+Lili,Kovács,Szeged Fit,U21 Female Individual Kata,2006-02-02,Female,2024-01-14
+Bendegúz,Boros,Tatabányai Harcmûvész Klub,Senior Male Individual Kata,1999-06-01,Male,2024-01-05
+Imre,Pásztor,Szeged Fit,U14 Male Kumite -45 kg,2013-08-10,Male,2024-02-25
+András,Király,Szolnoki Samurai SE,U14 Male Kumite -50 kg,2013-01-20,Male,2024-02-02
