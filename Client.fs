@@ -49,7 +49,7 @@ module Client =
     [<Inline "$x == null">]
     let isNull (x: obj) : bool = X<bool>
 
-    [<Inline "var r = new FileReader(); r.onload = function() { $cont(String(r.result)); }; r.readAsText($file);">]
+    [<Inline "var r = new FileReader(); r.onload = function() { $cont(String(r.result)); }; r.readAsText($file, 'UTF-8');">]
     let readFileAsText (file: obj) (cont: string -> unit) : unit = X<unit>
 
     [<Inline "Math.random()">]
@@ -219,7 +219,7 @@ module Client =
                 ] :> Doc
                 Doc.Element "thead" [] [
                     Doc.Element "tr" [] [
-                        Doc.Element "th" [Attr.Create "style" "width:60px;text-align:center;white-space:nowrap"] [Doc.TextNode "Match"] :> Doc
+                        Doc.Element "th" [Attr.Create "style" "width:60px;text-align:center;white-space:nowrap;padding-left:8px;padding-right:8px"] [Doc.TextNode "Match"] :> Doc
                         Doc.Element "th" [Attr.Create "style" "width:70px;white-space:nowrap"] [Doc.TextNode "#"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
                         Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
