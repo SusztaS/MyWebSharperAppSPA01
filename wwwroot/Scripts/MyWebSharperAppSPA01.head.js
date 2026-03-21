@@ -1,1 +1,1 @@
-document.write("")
+var wsbundle=(()=>{document.write("");})();
