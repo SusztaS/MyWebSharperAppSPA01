@@ -1,43 +1,53 @@
-﻿import { cpSync, readdirSync, existsSync } from 'fs'
+﻿import { cpSync, readdirSync, existsSync, mkdirSync } from 'fs'
 import { build } from 'esbuild'
 
-cpSync('./build/', './wwwroot/Scripts/', { recursive: true });
+if (!existsSync('./wwwroot/Scripts/')) {
+    mkdirSync('./wwwroot/Scripts/', { recursive: true });
+}
 
-const prebundles = readdirSync('./build/');
+if (existsSync('./build/')) {
+    cpSync('./build/', './wwwroot/Scripts/', { recursive: true });
 
-prebundles.forEach(file => {
-  if (file.endsWith('.js')) {
-    var options =
-    {
-      entryPoints: ['./build/' + file],
-      bundle: true,
-      minify: true,
-      format: 'iife',
-      outfile: 'wwwroot/Scripts/' + file,
-      globalName: 'wsbundle'
-    };
+    const prebundles = readdirSync('./build/');
 
-    console.log("Bundling:", file);
-    build(options);
-  }
-});
+    prebundles.forEach(file => {
+        if (file.endsWith('.js')) {
+            const options = {
+                entryPoints: ['./build/' + file],
+                bundle: true,
+                minify: true,
+                format: 'iife',
+                outfile: 'wwwroot/Scripts/' + file,
+                globalName: 'wsbundle'
+            };
 
-if (existsSync('./build/workers/')) {
-  const workers = readdirSync('./build/workers/');
+            console.log('Bundling:', file);
+            build(options);
+        }
+    });
 
-  workers.forEach(file => {
-    if (file.endsWith('.js')) {
-      var options =
-      {
-        entryPoints: ['./build/workers/' + file],
-        bundle: true,
-        minify: true,
-        format: 'iife',
-        outfile: 'wwwroot/Scripts/workers/' + file,
-      };
+    if (existsSync('./build/workers/')) {
+        if (!existsSync('./wwwroot/Scripts/workers/')) {
+            mkdirSync('./wwwroot/Scripts/workers/', { recursive: true });
+        }
 
-      console.log("Bundling worker:", file);
-      build(options);
+        const workers = readdirSync('./build/workers/');
+
+        workers.forEach(file => {
+            if (file.endsWith('.js')) {
+                const options = {
+                    entryPoints: ['./build/workers/' + file],
+                    bundle: true,
+                    minify: true,
+                    format: 'iife',
+                    outfile: 'wwwroot/Scripts/workers/' + file,
+                };
+
+                console.log('Bundling worker:', file);
+                build(options);
+            }
+        });
     }
-  });
+} else {
+    console.log('Skipping esbuild step: ./build/ does not exist');
 }
