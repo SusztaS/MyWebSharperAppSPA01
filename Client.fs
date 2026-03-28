@@ -55,6 +55,9 @@ module Client =
     [<Inline "Math.random()">]
     let jsRandom () : float = X<float>
 
+    [<Inline "var blob = new Blob(['\uFEFF' + $content], { type: 'text/csv;charset=utf-8;' }); var link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = $fileName; document.body.appendChild(link); link.click(); document.body.removeChild(link); setTimeout(function(){ URL.revokeObjectURL(link.href); }, 1000);">]
+    let downloadCsv (fileName: string) (content: string) : unit = X<unit>
+
     let genderText g =
         match g with
         | Male -> "Male"
@@ -130,6 +133,33 @@ module Client =
         items
         |> List.groupBy (fun c -> c.Race)
         |> List.collect (fun (_, x) -> shuffleList x)
+
+    let csvEscape (value: string) =
+        "\"" + value.Replace("\"", "\"\"") + "\""
+
+    let drawExportCsv (items: Competitor list) =
+        let header = "Tournament,Match,#,First Name,Family Name,Club"
+
+        let rows =
+            items
+            |> List.groupBy (fun c -> c.Race)
+            |> List.collect (fun (raceName, competitors) ->
+                competitors
+                |> List.chunkBySize 2
+                |> List.mapi (fun pairIndex pair ->
+                    pair
+                    |> List.map (fun c ->
+                        String.concat "," [
+                            csvEscape raceName
+                            string (pairIndex + 1)
+                            string c.Number
+                            csvEscape c.FirstName
+                            csvEscape c.FamilyName
+                            csvEscape c.ClubName
+                        ]))
+                |> List.collect id)
+
+        String.concat "\n" (header :: rows)
 
     let renderCompetitorRow c =
         Doc.Element "tr" [] [
@@ -237,7 +267,7 @@ module Client =
         let drawDone = Var.Create false
 
         let uploadStatus =
-            Var.Create "Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination"
+            Var.Create "Expected CSV columns: FirstName,FamilyName,ClubName,Tournament,DateOfBirth,Gender,DateOfMedicalExamination"
 
         let selectedClub = Var.Create ""
         let selectedRace = Var.Create ""
@@ -296,7 +326,7 @@ module Client =
                         Attr.Class "btn btn-secondary"
                         Attr.Create "disabled" "disabled"
                     ] [
-                        Doc.TextNode "Start draw"
+                        Doc.TextNode "Start tournament draw"
                     ] :> Doc
                 else
                     Doc.Element "button" [
@@ -305,9 +335,25 @@ module Client =
                             drawList.Value <- shuffleWithinRaces competitorList.Value
                             drawDone.Value <- true)
                     ] [
-                        Doc.TextNode "Start draw"
+                        Doc.TextNode "Start tournament draw"
                     ] :> Doc
             )
+
+        let exportButtonView =
+            View.Map2 (fun doneState items ->
+                if doneState && not (List.isEmpty items) then
+                    Doc.Element "button" [
+                        Attr.Class "btn btn-success"
+                        on.click (fun _ _ ->
+                            let csv = drawExportCsv items
+                            downloadCsv "tournament_draw.csv" csv)
+                    ] [
+                        Doc.TextNode "Export draw to CSV"
+                    ] :> Doc
+                else
+                    Doc.Empty)
+                drawDone.View
+                drawList.View
 
         IndexTemplate.Main()
             .ShowAdat(fun _ -> currentView.Value <- UploadView)
@@ -358,7 +404,7 @@ module Client =
                                 ] :> Doc
 
                                 Doc.Element "div" [Attr.Class "col"] [
-                                    Doc.Element "label" [Attr.Class "form-label"] [Doc.TextNode "Race"] :> Doc
+                                    Doc.Element "label" [Attr.Class "form-label"] [Doc.TextNode "Tournament"] :> Doc
                                     Doc.Element "select" [
                                         Attr.Class "form-select"
                                         Attr.Create "id" "raceFilter"
@@ -378,7 +424,7 @@ module Client =
                                         Doc.Element "th" [] [Doc.TextNode "First Name"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Family Name"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Club"] :> Doc
-                                        Doc.Element "th" [] [Doc.TextNode "Race"] :> Doc
+                                        Doc.Element "th" [] [Doc.TextNode "Tournament"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Date Of Birth"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Gender"] :> Doc
                                         Doc.Element "th" [] [Doc.TextNode "Medical Date"] :> Doc
@@ -396,9 +442,12 @@ module Client =
 
                             Doc.Element "div" [Attr.Class "d-flex justify-content-between align-items-center mb-4"] [
 
-                                Doc.Element "h1" [Attr.Class "h3 mb-0"] [Doc.TextNode "Draw by race"] :> Doc
+                                Doc.Element "h1" [Attr.Class "h3 mb-0"] [Doc.TextNode "Draw by tournament"] :> Doc
 
-                                drawButtonView |> Doc.EmbedView
+                                Doc.Element "div" [Attr.Class "d-flex gap-2"] [
+                                    drawButtonView |> Doc.EmbedView
+                                    exportButtonView |> Doc.EmbedView
+                                ] :> Doc
 
                             ] :> Doc
 

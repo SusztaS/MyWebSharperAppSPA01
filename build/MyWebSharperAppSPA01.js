@@ -7,7 +7,7 @@ function isIDisposable(x){
 function Main(){
   const currentView=_c.Create_1(UploadView);
   const drawDone=_c.Create_1(false);
-  const uploadStatus=_c.Create_1("Expected CSV columns: FirstName,FamilyName,ClubName,Race,DateOfBirth,Gender,DateOfMedicalExamination");
+  const uploadStatus=_c.Create_1("Expected CSV columns: FirstName,FamilyName,ClubName,Tournament,DateOfBirth,Gender,DateOfMedicalExamination");
   const selectedClub=_c.Create_1("");
   const selectedRace=_c.Create_1("");
   const competitorList=_c.Create_1(FSharpList.Empty);
@@ -16,21 +16,33 @@ function Main(){
   const raceOptionsView=Map((items) => Doc.Concat(map((race) => Doc.Element("option", ofArray([Attr.Create("value", race)]), ofArray([Doc.TextNode(race)])), sort(distinct(map((c) => c.Race, items))))), competitorList.View);
   const competitorRowsView=Map3((_3, _4, _5) => Doc.Concat(map_1(renderCompetitorRow, filter((c) =>(_4==""||c.ClubName==_4)&&(_5==""||c.Race==_5), _3))), competitorList.View, selectedClub.View, selectedRace.View);
   const drawGroupsView=Map((items) => items.$==0?Doc.Empty:Doc.Concat(map((t_3) => renderRaceGroup(t_3[0], t_3[1]), groupBy((c) => c.Race, items))), drawList.View);
-  const drawButtonView=Map((doneState) => doneState?Doc.Element("button", ofArray([Class("btn btn-secondary"), Attr.Create("disabled", "disabled")]), ofArray([Doc.TextNode("Start draw")])):Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => {
+  const drawButtonView=Map((doneState) => doneState?Doc.Element("button", ofArray([Class("btn btn-secondary"), Attr.Create("disabled", "disabled")]), ofArray([Doc.TextNode("Start tournament draw")])):Doc.Element("button", ofArray([Class("btn btn-primary"), Handler("click", () =>() => {
     drawList.Set(shuffleWithinRaces(competitorList.Get()));
     return drawDone.Set(true);
-  })]), ofArray([Doc.TextNode("Start draw")])), drawDone.View);
+  })]), ofArray([Doc.TextNode("Start tournament draw")])), drawDone.View);
+  const exportButtonView=Map2((_3, _4) => _3&&!(_4.$==0)?Doc.Element("button", ofArray([Class("btn btn-success"), Handler("click", () =>() => {
+    let blob=new Blob(["\ufeff"+drawExportCsv(_4)], {type:"text/csv;charset=utf-8;"});
+    let link=document.createElement("a");
+    link.href=URL.createObjectURL(blob);
+    link.download="tournament_draw.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => {
+      URL.revokeObjectURL(link.href);
+    }, 1000);
+  })]), ofArray([Doc.TextNode("Export draw to CSV")])):Doc.Empty, drawDone.View, drawList.View);
   const M=Doc.EmbedView(Map((view) => {
     if(view.$==1)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("h1", ofArray([Class("h3 mb-4")]), ofArray([Doc.TextNode("Competitors list")])), Doc.Element("div", ofArray([Class("row mb-3")]), ofArray([Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Club")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "clubFilter"), Handler("change", () =>() => {
       const id="clubFilter";
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedClub.Set(_4);
-    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Race")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "raceFilter"), Handler("change", () =>() => {
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(clubOptionsView)]))])), Doc.Element("div", ofArray([Class("col")]), ofArray([Doc.Element("label", ofArray([Class("form-label")]), ofArray([Doc.TextNode("Tournament")])), Doc.Element("select", ofArray([Class("form-select"), Attr.Create("id", "raceFilter"), Handler("change", () =>() => {
       const id="raceFilter";
       let _4=document.getElementById(id)?document.getElementById(id).value:"";
       return selectedRace.Set(_4);
-    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Race")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date Of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
-    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by race")])), Doc.EmbedView(drawButtonView)])), Doc.EmbedView(drawGroupsView)]));
+    })]), ofArray([Doc.Element("option", ofArray([Attr.Create("value", "")]), ofArray([Doc.TextNode("All")])), Doc.EmbedView(raceOptionsView)]))]))])), Doc.Element("table", ofArray([Class("table table-striped")]), ofArray([Doc.Element("thead", FSharpList.Empty, ofArray([Doc.Element("tr", FSharpList.Empty, ofArray([Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("#")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("First Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Family Name")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Club")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Tournament")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Date Of Birth")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Gender")])), Doc.Element("th", FSharpList.Empty, ofArray([Doc.TextNode("Medical Date")]))]))])), Doc.Element("tbody", FSharpList.Empty, ofArray([Doc.EmbedView(competitorRowsView)]))]))]));
+    else if(view.$==2)return Doc.Element("div", FSharpList.Empty, ofArray([Doc.Element("div", ofArray([Class("d-flex justify-content-between align-items-center mb-4")]), ofArray([Doc.Element("h1", ofArray([Class("h3 mb-0")]), ofArray([Doc.TextNode("Draw by tournament")])), Doc.Element("div", ofArray([Class("d-flex gap-2")]), ofArray([Doc.EmbedView(drawButtonView), Doc.EmbedView(exportButtonView)]))])), Doc.EmbedView(drawGroupsView)]));
     else {
       const U=Doc.TextView(uploadStatus.View);
       const this_2=new ProviderBuilder("New_1");
@@ -94,6 +106,12 @@ function parseCsv(content){
     DateOfMedicalExamination:_4.DateOfMedicalExamination
   }), _2);
 }
+function drawExportCsv(items){
+  return concat_2("\n", FSharpList.Cons("Tournament,Match,#,First Name,Family Name,Club", collect((_1) => {
+    const raceName=_1[0];
+    return collect((x) => x, mapi((_2, _3) => map((c) => concat_2(",", [csvEscape(raceName), String(_2+1), String(c.Number), csvEscape(c.FirstName), csvEscape(c.FamilyName), csvEscape(c.ClubName)]), _3), chunkBySize(2, _1[1])));
+  }, groupBy((c) => c.Race, items))));
+}
 function shuffleWithinRaces(items){
   return collect((_1) => shuffleList(_1[1]), groupBy((c) => c.Race, items));
 }
@@ -132,6 +150,9 @@ function tryParseCompetitor(line){
     Gender:parseGender(_1[4]), 
     DateOfMedicalExamination:Parse(_1[5])
   }):null;
+}
+function csvEscape(value){
+  return"\""+Replace(value, "\"", "\"\"")+"\"";
 }
 function shuffleList(items){
   const arr=ofList(items);
@@ -817,6 +838,9 @@ function main(h){
   LoadLocalTemplates("index");
   return h?NamedTemplate("index", n, h):void 0;
 }
+function Map2(fn, a, a_1){
+  return CreateLazy(() => Map2_1(fn, a(), a_1()));
+}
 function Map3(fn, a, a_1, a_2){
   return CreateLazy(() => Map3_1(fn, a(), a_1(), a_2()));
 }
@@ -863,9 +887,6 @@ function Sink(act, a){
 }
 function Sequence(views){
   return CreateLazy(() => Sequence_1(map_1((a) => a(), views)));
-}
-function Map2(fn, a, a_1){
-  return CreateLazy(() => Map2_1(fn, a(), a_1()));
 }
 function map_1(f, s){
   return{GetEnumerator:() => {
@@ -1130,6 +1151,27 @@ class ConcreteVar extends Var {
     this.id=Int();
   }
 }
+function Map2_1(fn, sn1, sn2){
+  const _1=sn1.s;
+  const _2=sn2.s;
+  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?{s:Forever(fn(_1.$0, _2.$0))}:Map2Opt1(fn, _1.$0, sn2);
+  else if(_2!=null&&_2.$==0)return Map2Opt2(fn, _2.$0, sn1);
+  else {
+    const res={s:Waiting([], [])};
+    const cont=() => {
+      const m=res.s;
+      if(!(m!=null&&m.$==0||m!=null&&m.$==2)){
+        const _3=ValueAndForever(sn1);
+        const _4=ValueAndForever(sn2);
+        if(_3!=null&&_3.$==1)if(_4!=null&&_4.$==1)if(_3.$0[1]&&_4.$0[1])MarkForever(res, fn(_3.$0[0], _4.$0[0]));
+        else MarkReady(res, fn(_3.$0[0], _4.$0[0]));
+      }
+    };
+    When(sn1, cont, res);
+    When(sn2, cont, res);
+    return res;
+  }
+}
 function Map3_1(fn, sn1, sn2, sn3){
   const _1=sn1.s;
   const _2=sn2.s;
@@ -1171,23 +1213,11 @@ function WhenObsoleteRun(snap, obs){
   if(m==null)obs();
   else m!=null&&m.$==2?(m.$0,m.$1.push(obs)):m!=null&&m.$==3?(m.$0,m.$1.push(obs)):m.$0;
 }
-function Map3Opt1(fn, x, y, sn3){
-  return Map_1((z) => fn(x, y, z), sn3);
+function Map2Opt1(fn, x, sn2){
+  return Map_1((y) => fn(x, y), sn2);
 }
-function Map3Opt2(fn, x, z, sn2){
-  return Map_1((y) => fn(x, y, z), sn2);
-}
-function Map3Opt3(fn, x, sn2, sn3){
-  return Map2_1((_1, _2) => fn(x, _1, _2), sn2, sn3);
-}
-function Map3Opt4(fn, y, z, sn1){
-  return Map_1((x) => fn(x, y, z), sn1);
-}
-function Map3Opt5(fn, y, sn1, sn3){
-  return Map2_1((_1, _2) => fn(_1, y, _2), sn1, sn3);
-}
-function Map3Opt6(fn, z, sn1, sn2){
-  return Map2_1((_1, _2) => fn(_1, _2, z), sn1, sn2);
+function Map2Opt2(fn, y, sn1){
+  return Map_1((x) => fn(x, y), sn1);
 }
 function ValueAndForever(snap){
   const m=snap.s;
@@ -1227,10 +1257,45 @@ function When(snap, avail, obs){
   }
   else avail(m.$0);
 }
+function Map3Opt1(fn, x, y, sn3){
+  return Map_1((z) => fn(x, y, z), sn3);
+}
+function Map3Opt2(fn, x, z, sn2){
+  return Map_1((y) => fn(x, y, z), sn2);
+}
+function Map3Opt3(fn, x, sn2, sn3){
+  return Map2_1((_1, _2) => fn(x, _1, _2), sn2, sn3);
+}
+function Map3Opt4(fn, y, z, sn1){
+  return Map_1((x) => fn(x, y, z), sn1);
+}
+function Map3Opt5(fn, y, sn1, sn3){
+  return Map2_1((_1, _2) => fn(_1, y, _2), sn1, sn3);
+}
+function Map3Opt6(fn, z, sn1, sn2){
+  return Map2_1((_1, _2) => fn(_1, _2, z), sn1, sn2);
+}
 function MarkDone(res, sn, v){
   const _1=sn.s;
   if(_1!=null&&_1.$==0)MarkForever(res, v);
   else MarkReady(res, v);
+}
+function EnqueueSafe(q, x){
+  q.push(x);
+  if(q.length%20===0){
+    const qcopy=q.slice(0);
+    Clear(q);
+    for(let i=0, _1=length(qcopy)-1;i<=_1;i++){
+      const o=get(qcopy, i);
+      if(typeof o=="object")(((sn) => {
+        if(sn.s)q.push(sn);
+      })(o));
+      else(((f) => {
+        q.push(f);
+      })(o));
+    }
+  }
+  else void 0;
 }
 function Map2Unit_1(sn1, sn2){
   const _1=sn1.s;
@@ -1252,44 +1317,6 @@ function Map2Unit_1(sn1, sn2){
     When(sn2, cont, res);
     return res;
   }
-}
-function Map2_1(fn, sn1, sn2){
-  const _1=sn1.s;
-  const _2=sn2.s;
-  if(_1!=null&&_1.$==0)return _2!=null&&_2.$==0?{s:Forever(fn(_1.$0, _2.$0))}:Map2Opt1(fn, _1.$0, sn2);
-  else if(_2!=null&&_2.$==0)return Map2Opt2(fn, _2.$0, sn1);
-  else {
-    const res={s:Waiting([], [])};
-    const cont=() => {
-      const m=res.s;
-      if(!(m!=null&&m.$==0||m!=null&&m.$==2)){
-        const _3=ValueAndForever(sn1);
-        const _4=ValueAndForever(sn2);
-        if(_3!=null&&_3.$==1)if(_4!=null&&_4.$==1)if(_3.$0[1]&&_4.$0[1])MarkForever(res, fn(_3.$0[0], _4.$0[0]));
-        else MarkReady(res, fn(_3.$0[0], _4.$0[0]));
-      }
-    };
-    When(sn1, cont, res);
-    When(sn2, cont, res);
-    return res;
-  }
-}
-function EnqueueSafe(q, x){
-  q.push(x);
-  if(q.length%20===0){
-    const qcopy=q.slice(0);
-    Clear(q);
-    for(let i=0, _1=length(qcopy)-1;i<=_1;i++){
-      const o=get(qcopy, i);
-      if(typeof o=="object")(((sn) => {
-        if(sn.s)q.push(sn);
-      })(o));
-      else(((f) => {
-        q.push(f);
-      })(o));
-    }
-  }
-  else void 0;
 }
 function Copy(sn){
   const m=sn.s;
@@ -1325,12 +1352,6 @@ function Join_1(snap){
     }, res);
   }, res);
   return res;
-}
-function Map2Opt1(fn, x, sn2){
-  return Map_1((y) => fn(x, y), sn2);
-}
-function Map2Opt2(fn, y, sn1){
-  return Map_1((x) => fn(x, y), sn1);
 }
 function WhenObsolete(snap, obs){
   const m=snap.s;
@@ -1664,6 +1685,23 @@ function choose_2(f, arr){
   }
   return q;
 }
+function ofSeq_1(xs){
+  if(xs instanceof Array)return xs.slice();
+  else if(xs instanceof FSharpList)return ofList(xs);
+  else {
+    const q=[];
+    const o=Get(xs);
+    try {
+      while(o.MoveNext())
+        q.push(o.Current);
+      return q;
+    }
+    finally {
+      const _1=o;
+      if(typeof _1=="object"&&isIDisposable(_1))o.Dispose();
+    }
+  }
+}
 function exists_1(f, x){
   let e=false;
   let i=0;
@@ -1719,23 +1757,6 @@ function map_2(f, arr){
   const r=new Array(arr.length);
   for(let i=0, _1=arr.length-1;i<=_1;i++)r[i]=f(arr[i]);
   return r;
-}
-function ofSeq_1(xs){
-  if(xs instanceof Array)return xs.slice();
-  else if(xs instanceof FSharpList)return ofList(xs);
-  else {
-    const q=[];
-    const o=Get(xs);
-    try {
-      while(o.MoveNext())
-        q.push(o.Current);
-      return q;
-    }
-    finally {
-      const _1=o;
-      if(typeof _1=="object"&&isIDisposable(_1))o.Dispose();
-    }
-  }
 }
 function create(size, value){
   const r=new Array(size);
@@ -2347,6 +2368,54 @@ function foreachNotPreservedwsDOM(selector, f){
 function TextHoleRE(){
   return _c_2.TextHoleRE;
 }
+function concat_2(separator, strings){
+  return ofSeq_1(strings).join(separator);
+}
+function SplitChars(s, sep, opts){
+  return Split(s, new RegExp("["+RegexEscape(sep.join(""))+"]"), opts);
+}
+function Replace(subject, search, replace){
+  function replaceLoop(subj){
+    const index=subj.indexOf(search);
+    if(index!==-1){
+      const replaced=ReplaceOnce(subj, search, replace);
+      const nextStartIndex=index+replace.length;
+      return Substring(replaced, 0, index+replace.length)+replaceLoop(replaced.substring(nextStartIndex));
+    }
+    else return subj;
+  }
+  return replaceLoop(subject);
+}
+function Trim(s){
+  return s.replace(new RegExp("^\\s+"), "").replace(new RegExp("\\s+$"), "");
+}
+function Split(s, pat, opts){
+  return opts===1?filter_1((x) => x!=="", SplitWith(s, pat)):SplitWith(s, pat);
+}
+function RegexEscape(s){
+  return s.replace(new RegExp("[-\\/\\\\^$*+?.()|[\\]{}]", "g"), "\\$&");
+}
+function ReplaceOnce(string_1, search, replace){
+  return string_1.replace(search, replace);
+}
+function SplitWith(str, pat){
+  return str.split(pat);
+}
+function Substring(s, ix, ct){
+  return s.substr(ix, ct);
+}
+function StartsWith(t, s){
+  return t.substring(0, s.length)==s;
+}
+function replicate(count, s){
+  return create(count, s).join("");
+}
+function forall_2(f, s){
+  return forall(f, protect(s));
+}
+function protect(s){
+  return s==null?"":s;
+}
 function groupBy_1(f, a){
   const d=new Dictionary("New_5");
   const keys=[];
@@ -2893,54 +2962,6 @@ function DoSyncElement(el){
   const m=GetOptional(el.Delimiters);
   let _2=m!=null&&m.$==1?m.$0[1]:null;
   ins(_1, _2);
-}
-function SplitChars(s, sep, opts){
-  return Split(s, new RegExp("["+RegexEscape(sep.join(""))+"]"), opts);
-}
-function Replace(subject, search, replace){
-  function replaceLoop(subj){
-    const index=subj.indexOf(search);
-    if(index!==-1){
-      const replaced=ReplaceOnce(subj, search, replace);
-      const nextStartIndex=index+replace.length;
-      return Substring(replaced, 0, index+replace.length)+replaceLoop(replaced.substring(nextStartIndex));
-    }
-    else return subj;
-  }
-  return replaceLoop(subject);
-}
-function Trim(s){
-  return s.replace(new RegExp("^\\s+"), "").replace(new RegExp("\\s+$"), "");
-}
-function Split(s, pat, opts){
-  return opts===1?filter_1((x) => x!=="", SplitWith(s, pat)):SplitWith(s, pat);
-}
-function RegexEscape(s){
-  return s.replace(new RegExp("[-\\/\\\\^$*+?.()|[\\]{}]", "g"), "\\$&");
-}
-function ReplaceOnce(string_1, search, replace){
-  return string_1.replace(search, replace);
-}
-function SplitWith(str, pat){
-  return str.split(pat);
-}
-function Substring(s, ix, ct){
-  return s.substr(ix, ct);
-}
-function concat_2(separator, strings){
-  return ofSeq_1(strings).join(separator);
-}
-function StartsWith(t, s){
-  return t.substring(0, s.length)==s;
-}
-function replicate(count, s){
-  return create(count, s).join("");
-}
-function forall_2(f, s){
-  return forall(f, protect(s));
-}
-function protect(s){
-  return s==null?"":s;
 }
 class HashSet extends Object_1 {
   equals;
@@ -4369,6 +4390,9 @@ let _c_5=Lazy((_i) => class Proxy {
     this.BatchUpdatesEnabled=true;
   }
 });
+function Clear(a){
+  a.splice(0, length(a));
+}
 class KeyNotFoundException extends Error {
   constructor(i, _1){
     if(i=="New"){
@@ -4388,9 +4412,6 @@ class ArgumentException extends Error {
       super(message);
     }
   }
-}
-function Clear(a){
-  a.splice(0, length(a));
 }
 let _c_6=Lazy((_i) => class Pervasives {
   static {
