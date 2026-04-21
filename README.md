@@ -5,7 +5,7 @@ This small application is presumably will be a part of a bigger project with mor
 An example input file can be downloaded from here:
 [Competitors.csv](https://github.com/user-attachments/files/26174809/Competitors.csv)
 
-try-link: https://suszta.ddns.net/alpha
+try-live link: https://suszta.ddns.net/alpha
 
 
 ![ScreenShot](https://github.com/user-attachments/assets/a32356dc-5fa8-4f97-8b2c-ed6e057cad9b)
